@@ -1,6 +1,6 @@
 import React from "react";
 import { map, flatten } from "lodash/fp";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 const mapUncapped = map.convert({ cap: false });
 type Item = React.FC;

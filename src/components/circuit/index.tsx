@@ -1,45 +1,54 @@
 import React from "react";
+import { map } from "lodash/fp";
+import { DraggableList, Activity } from "../atoms/";
+
+const mapUncapped = map.convert({ cap: false });
 
 type Exercise = { name: string };
-export type CircuitProps = { elements: { exercise: Exercise; time: number }[] };
+type PlanElement = { exercise: Exercise; time: number };
+export type CircuitProps = {
+  plan: PlanElement[];
+  circuitIndex: number;
+};
 
-export const Circuit = ({ elements }: CircuitProps) => (
-  <div
-    style={{
-      width: 310,
-      // height: "100 %",
-      height: 1200,
-      borderRadius: 5,
-      boxShadow: "0px 0px 1px black",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "flex-start",
-      backgroundColor: "#FAFAFA"
-    }}
-  >
-    {/* <div
-      style={{
-        width: "100%",
-        display: "flex",
-        fontWeight: 700,
-        padding: 10,
-        fontSize: 20,
-        fontFamily: "Arial"
-      }}
-    >
-      {exercise.name}
-    </div>
+export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
+  const items = mapUncapped(
+    ({ exercise, time }: PlanElement, index: number) => (
+      <Activity
+        style={{ margin: 5 }}
+        {...{ exercise, time }}
+        key={`circuit${circuitIndex}-activity${index}`}
+      />
+    ),
+    plan
+  );
+  return (
     <div
       style={{
-        width: "100%",
+        width: 310,
+        height: "100%",
+        borderRadius: 5,
+        boxShadow: "0px 0px 1px black",
         display: "flex",
-        padding: 10,
-        fontSize: 15,
-        fontFamily: "Arial",
-        color: "#AAAAAA"
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        backgroundColor: "#FAFAFA"
       }}
     >
-      {`${time} s`}
-    </div> */}
-  </div>
-);
+      <div
+        style={{
+          width: "100%",
+          height: 50,
+          // borderRadius: 5,
+          // boxShadow: "0px 0px 1px black",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#FAFAFA"
+        }}
+      >{`Circuit ${circuitIndex + 1}`}</div>
+      <DraggableList listId={`circuit${circuitIndex}`}>{items}</DraggableList>
+    </div>
+  );
+};
