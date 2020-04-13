@@ -6,7 +6,7 @@ import { DraggableList, Activity, Text } from "../atoms/";
 const mapUncapped = map.convert({ cap: false });
 
 type Exercise = { name: string };
-type PlanElement = { exercise: Exercise; time: number };
+type PlanElement = { exercise: Exercise; time: number; status?: string };
 export type CircuitProps = {
   plan: PlanElement[];
   circuitIndex: number;
@@ -20,10 +20,10 @@ const Separator = styled.div(`
 
 export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
   const items = mapUncapped(
-    ({ exercise, time }: PlanElement, index: number) => (
+    (elementPlan: PlanElement, index: number) => (
       <Activity
         style={{ margin: 5 }}
-        {...{ exercise, time }}
+        {...elementPlan}
         key={`circuit${circuitIndex}-activity${index}`}
       />
     ),

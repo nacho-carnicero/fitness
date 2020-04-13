@@ -28,7 +28,7 @@ export const WithActivities = () => (
         circuitIndex={0}
         plan={[
           { exercise: { name: "Squat" }, time: 30 },
-          { exercise: { name: "Push ups" }, time: 45 },
+          { exercise: { name: "Push ups" }, time: 45, status: "executing" },
           { exercise: { name: "Crunch" }, time: 60 },
           { exercise: { name: "Pull ups" }, time: 15 }
         ]}

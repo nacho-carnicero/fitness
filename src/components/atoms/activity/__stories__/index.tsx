@@ -10,3 +10,6 @@ const exercise = { name: "Squat" };
 const time = 30;
 
 export const Basic = () => <Activity {...{ exercise, time }} />;
+export const Executing = () => (
+  <Activity {...{ exercise, time, status: "executing" }} />
+);
