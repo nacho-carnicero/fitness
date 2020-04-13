@@ -2,6 +2,8 @@ import React from "react";
 import { map } from "lodash/fp";
 import styled from "@emotion/styled";
 import { DraggableList, Activity, Text } from "../atoms/";
+import { neutralColor, defaultShadowColor } from "../../style/colors";
+import { defaultBorderRadius, defaultBoxShadow } from "../../style/layout";
 
 const mapUncapped = map.convert({ cap: false });
 
@@ -15,7 +17,7 @@ export type CircuitProps = {
 const Separator = styled.div(`
   width:100%;
   height:1px;
-  box-shadow: 0px -1px 1px black
+  background-color: ${defaultShadowColor}
 `);
 
 export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
@@ -34,12 +36,13 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
       style={{
         width: 310,
         height: "100%",
-        borderRadius: 5,
-        boxShadow: "0px 0px 1px black",
+        borderRadius: defaultBorderRadius,
+        boxShadow: defaultBoxShadow,
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        backgroundColor: "#FAFAFA"
+        backgroundColor: neutralColor,
+        margin: 5
       }}
     >
       <Text
