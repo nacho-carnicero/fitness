@@ -1,6 +1,7 @@
 import React from "react";
 import { map } from "lodash/fp";
-import { DraggableList, Activity } from "../atoms/";
+import styled from "@emotion/styled";
+import { DraggableList, Activity, Text } from "../atoms/";
 
 const mapUncapped = map.convert({ cap: false });
 
@@ -10,6 +11,12 @@ export type CircuitProps = {
   plan: PlanElement[];
   circuitIndex: number;
 };
+
+const Separator = styled.div(`
+  width:100%;
+  height:1px;
+  box-shadow: 0px -1px 1px black
+`);
 
 export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
   const items = mapUncapped(
@@ -35,19 +42,17 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
         backgroundColor: "#FAFAFA"
       }}
     >
-      <div
+      <Text
         style={{
-          width: "100%",
           height: 50,
-          // borderRadius: 5,
-          // boxShadow: "0px 0px 1px black",
-          display: "flex",
-          flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#FAFAFA"
+          display: "flex"
         }}
-      >{`Circuit ${circuitIndex + 1}`}</div>
+        bold
+      >{`Circuit ${circuitIndex + 1}`}</Text>
+      <Separator />
+
       <DraggableList listId={`circuit${circuitIndex}`}>{items}</DraggableList>
     </div>
   );
