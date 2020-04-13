@@ -3,14 +3,18 @@ import styled from "@emotion/styled";
 import { map, get } from "lodash/fp";
 import { Circuit } from "../circuit";
 import { neutralColor } from "../../style/colors";
-import { defaultBorderRadius, defaultBoxShadow } from "../../style/layout";
+import {
+  defaultBorderRadius,
+  defaultBoxShadow,
+  headerHeight
+} from "../../style/layout";
 
 const mapUncapped = map.convert({ cap: false });
 
 const TrainingHeader = () => (
   <div
     style={{
-      height: 40,
+      height: headerHeight,
       backgroundColor: neutralColor,
       borderRadius: defaultBorderRadius,
       boxShadow: defaultBoxShadow

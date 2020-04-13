@@ -3,7 +3,11 @@ import { map } from "lodash/fp";
 import styled from "@emotion/styled";
 import { DraggableList, Activity, Text } from "../atoms/";
 import { neutralColor, defaultShadowColor } from "../../style/colors";
-import { defaultBorderRadius, defaultBoxShadow } from "../../style/layout";
+import {
+  defaultBorderRadius,
+  defaultBoxShadow,
+  headerHeight
+} from "../../style/layout";
 
 const mapUncapped = map.convert({ cap: false });
 
@@ -47,7 +51,7 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
     >
       <Text
         style={{
-          height: 50,
+          height: headerHeight,
           justifyContent: "center",
           alignItems: "center",
           display: "flex"
