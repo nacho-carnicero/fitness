@@ -9,8 +9,8 @@ export default {
 };
 
 const Window = styled.div`
-  width: ${window.innerWidth}px;
-  height: ${window.innerHeight}px;
+  width: ${window.outerWidth}px;
+  height: ${window.outerHeight}px;
 `;
 
 export const NoActivity = () => (
