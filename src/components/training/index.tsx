@@ -35,8 +35,8 @@ export const Training = props => {
   return (
     <div
       style={{
-        width: window.outerWidth,
-        height: window.outerHeight,
+        width: "100%",
+        height: "100%",
         display: "flex",
         flexDirection: "column"
       }}

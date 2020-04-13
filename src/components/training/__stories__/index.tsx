@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "@emotion/styled";
 import { Training } from "../";
 import { DragDropContext } from "react-beautiful-dnd";
 
@@ -7,9 +8,16 @@ export default {
   component: Training
 };
 
+const Window = styled.div`
+  width: ${window.innerWidth}px;
+  height: ${window.innerHeight}px;
+`;
+
 export const Basic = () => (
   <DragDropContext>
-    <Training />
+    <Window>
+      <Training />
+    </Window>
   </DragDropContext>
 );
 
@@ -50,6 +58,8 @@ const training = {
 
 export const WithContent = () => (
   <DragDropContext>
-    <Training training={training} />
+    <Window>
+      <Training training={training} />
+    </Window>
   </DragDropContext>
 );
