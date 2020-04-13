@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Text } from "../text";
 
 type Exercise = { name: string };
 export type ActivityProps = { exercise: Exercise; time: number; style: any };
@@ -18,30 +19,24 @@ export const Activity = ({ exercise, time, style }: ActivityProps) => {
   }));
   return (
     <ActivityContainer>
-      <div
+      <Text
         style={{
-          width: "100%",
-          display: "flex",
-          fontWeight: 700,
           padding: 10,
-          fontSize: 20,
-          fontFamily: "Arial"
+          fontSize: 20
         }}
+        bold
       >
         {exercise.name}
-      </div>
-      <div
+      </Text>
+      <Text
         style={{
-          width: "100%",
-          display: "flex",
           padding: 10,
           fontSize: 15,
-          fontFamily: "Arial",
           color: "#AAAAAA"
         }}
       >
         {`${time} s`}
-      </div>
+      </Text>
     </ActivityContainer>
   );
 };
