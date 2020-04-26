@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { Text } from "../text";
 
 type Exercise = { name: string };
@@ -32,15 +34,33 @@ export const Activity = ({
   }));
   return (
     <ActivityContainer>
-      <Text
+      <div
         style={{
-          padding: 10,
-          fontSize: 20
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexDirection: "row",
+          margin: 10
         }}
-        bold
       >
-        {exercise.name}
-      </Text>
+        <Text
+          style={{
+            fontSize: 20
+          }}
+          bold
+        >
+          {exercise.name}
+        </Text>
+        <button
+          style={{
+            width: 30,
+            height: 0.75 * 30,
+            borderRadius: 5
+          }}
+        >
+          <FontAwesomeIcon icon={faEllipsisH} />
+        </button>
+      </div>
       <Text
         style={{
           padding: 10,

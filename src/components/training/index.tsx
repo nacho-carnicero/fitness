@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { map, get } from "lodash/fp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Circuit } from "../circuit";
 import { neutralColor } from "../../style/colors";
 import {
@@ -11,15 +13,29 @@ import {
 
 const mapUncapped = map.convert({ cap: false });
 
-const TrainingHeader = () => (
+const TrainingHeader = ({ addCircuit }) => (
   <div
     style={{
       height: headerHeight,
       backgroundColor: neutralColor,
       borderRadius: defaultBorderRadius,
-      boxShadow: defaultBoxShadow
+      boxShadow: defaultBoxShadow,
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center"
     }}
-  ></div>
+  >
+    <div style={{ margin: 5 }}></div>
+    <div style={{ margin: 5 }}>
+      <button
+        style={{ width: 40, height: 30, borderRadius: 5 }}
+        onClick={addCircuit}
+      >
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
+    </div>
+  </div>
 );
 
 const TrainingContainer = styled.div({
