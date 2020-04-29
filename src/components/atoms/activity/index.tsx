@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { Text } from "../text";
+import { PopList } from "../popover"
 
 type Exercise = { name: string };
 export type ActivityProps = {
@@ -32,6 +33,15 @@ export const Activity = ({
     backgroundColor: "#FFFFFF",
     ...style
   }));
+  ////////////
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  ////////////
   return (
     <ActivityContainer>
       <div
@@ -57,6 +67,7 @@ export const Activity = ({
             height: 0.75 * 30,
             borderRadius: 5
           }}
+          onClick={handleClick}
         >
           <FontAwesomeIcon icon={faEllipsisH} />
         </button>
@@ -70,6 +81,9 @@ export const Activity = ({
       >
         {`${time} s`}
       </Text>
+      < PopList
+        anchorEl={anchorEl}
+        handleClose={handleClose} />
     </ActivityContainer>
   );
 };
