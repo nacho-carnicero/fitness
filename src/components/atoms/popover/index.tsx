@@ -30,7 +30,7 @@ const listItems = options.map((option) =>
 );
 
 type props = {
-    anchorEl: HTMLButtonElement | boolean | null;
+    anchorEl: HTMLButtonElement | null;
     handleClose: any; // ------------------> TODO No se que cojones poner para callback
 };
 
