@@ -5,14 +5,14 @@ import { Training, CircuitInputToAddCircuit } from "../types";
 const defaultEmptyCircuit = { type: "circuit", plan: [] };
 
 export const addCircuit = (
-  previousPlan: Training,
+  previousTraining: Training,
   newCircuit: CircuitInputToAddCircuit = defaultEmptyCircuit
-) => {
+): Training => {
   const id = cuid();
   return {
-    ...previousPlan,
+    ...previousTraining,
     plan: [
-      ...get("plan", previousPlan),
+      ...get("plan", previousTraining),
       { ...defaultEmptyCircuit, id, ...newCircuit }
     ]
   };
