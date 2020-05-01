@@ -67,7 +67,7 @@ export const Activity = ({
             height: 0.75 * 30,
             borderRadius: 5
           }}
-          onClick={handleClick}
+          onClick={(event) => handleClick(event)}
         >
           <FontAwesomeIcon icon={faEllipsisH} />
         </button>

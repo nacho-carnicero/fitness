@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
-import { Text } from "../text";
+import { OptionsList } from "../list"
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -19,23 +19,13 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-const options = [
-    "Edit",
-    "Duplicate",
-    "Remove"
-]
-
-const listItems = options.map((option) =>
-    <li onClick={() => { }} ><Text>{option}</Text></li>
-);
-
 type props = {
     anchorEl: HTMLButtonElement | null;
     handleClose: any; // ------------------> TODO No se que cojones poner para callback
+    options: Array<String>
 };
 
 export function PopList(props: props) {
-    const classes = useStyles();
 
     const open = Boolean(props.anchorEl);
     const id = open ? 'simple-popover' : undefined;
@@ -57,7 +47,8 @@ export function PopList(props: props) {
                     horizontal: 'left',
                 }}
             >
-                <ul className={classes.list}>{listItems}</ul>
+                < OptionsList
+                    options={props.options} />
             </Popover>
         </div >
     );
