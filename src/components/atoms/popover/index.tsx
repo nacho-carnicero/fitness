@@ -2,6 +2,9 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import { OptionsList } from "../list"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+
 
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -20,31 +23,47 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type props = {
-    anchorEl: HTMLButtonElement | null;
-    handleClose: any; // ------------------> TODO No se que cojones poner para callback
+    location: Object,
     options: Array<String>
 };
 
 export function PopList(props: props) {
 
-    const open = Boolean(props.anchorEl);
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
     return (
         <div>
+            <button
+                style={{
+                    width: 30,
+                    height: 0.75 * 30,
+                    borderRadius: 5
+                }}
+                onClick={(event) => handleClick(event)}
+            >
+                <FontAwesomeIcon icon={faEllipsisH} />
+            </button>
             <Popover
                 id={id}
                 open={open}
-                anchorEl={props.anchorEl}
-                onClose={props.handleClose}
-                // TODO -> the coordinates with respect to button are not working
+                anchorEl={anchorEl}
+                onClose={handleClose}
                 anchorOrigin={{
-                    vertical: 'center',
-                    horizontal: 'right',
+                    vertical: props.location.but.vertical,
+                    horizontal: props.location.but.horizontal,
                 }}
                 transformOrigin={{
-                    vertical: 'center',
-                    horizontal: 'left',
+                    vertical: props.location.pop.vertical,
+                    horizontal: props.location.pop.horizontal,
                 }}
             >
                 < OptionsList

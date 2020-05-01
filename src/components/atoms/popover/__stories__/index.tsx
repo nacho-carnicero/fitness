@@ -10,8 +10,17 @@ export const DefaultPop = () => {
 
     const but = <button />
     return (< PopList
-        anchorEl={but}
-        handleClose={() => { }}
+        location={
+            {
+                but: {
+                    vertical: 'center',
+                    horizontal: 'right',
+                },
+                pop: {
+                    vertical: 'center',
+                    horizontal: 'right',
+                }
+            }}
         options={["Edit", "Remove", "Duplicate"]} />)
 };
 

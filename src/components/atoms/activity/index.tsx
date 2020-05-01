@@ -33,7 +33,7 @@ export const Activity = ({
     backgroundColor: "#FFFFFF",
     ...style
   }));
-  ////////////
+  ///////////
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
