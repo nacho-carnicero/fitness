@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { Text } from "../text";
+import { PopList } from "../popover";
 import { ActivityProps } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
@@ -25,6 +24,7 @@ export const DisplayActivity = ({
     backgroundColor: "#FFFFFF",
     ...style
   }));
+
   return (
     <ActivityContainer>
       <div
@@ -44,15 +44,11 @@ export const DisplayActivity = ({
         >
           {exercise.name}
         </Text>
-        <button
-          style={{
-            width: 30,
-            height: 0.75 * 30,
-            borderRadius: 5
-          }}
-        >
-          <FontAwesomeIcon icon={faEllipsisH} />
-        </button>
+        <PopList
+          anchorOrigin={{ vertical: "center", horizontal: "center" }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
+          options={["Edit", "Remove", "Duplicate"]}
+        />
       </div>
       <Text
         style={{

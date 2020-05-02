@@ -1,10 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { map, get } from "lodash/fp";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { Circuit } from "../circuit";
 import { neutralColor } from "../../style/colors";
+import { PopList } from "../atoms/popover"
 import {
   defaultBorderRadius,
   defaultBoxShadow,
@@ -22,6 +21,7 @@ type Props = {
 const TrainingHeader = ({ addCircuit }: { addCircuit: () => void }) => (
   <div
     style={{
+      width:'50%',
       height: headerHeight,
       backgroundColor: neutralColor,
       borderRadius: defaultBorderRadius,
@@ -34,12 +34,16 @@ const TrainingHeader = ({ addCircuit }: { addCircuit: () => void }) => (
   >
     <div style={{ margin: 5 }}></div>
     <div style={{ margin: 5 }}>
-      <button
-        style={{ width: 40, height: 30, borderRadius: 5 }}
-        onClick={addCircuit}
-      >
-        <FontAwesomeIcon icon={faPlus} />
-      </button>
+      < PopList 
+          anchorOrigin={
+            {vertical: 'center',
+            horizontal: 'center'}
+                  }
+          transformOrigin={
+            {vertical: 'top',
+            horizontal: 'right'}
+                  }
+          options={["Add", "Edit", "Remove", "Duplicate"]} />
     </div>
   </div>
 );
