@@ -8,6 +8,14 @@ export type Activity = {
   status?: string;
 };
 
+export type ActivityInputToAddActivity = {
+  id?: string;
+  type: string;
+  exercise: Exercise;
+  time: number;
+  status?: string;
+};
+
 export type Circuit = {
   id: string;
   type: string;
