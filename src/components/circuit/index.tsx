@@ -66,18 +66,16 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
             }}
             bold
           >{`Circuit ${circuitIndex + 1}`}</Text>
-          < PopList location={
-          {
-            but: {
-              vertical: 'center',
-              horizontal: 'center',
-            },
-            pop: {
-              vertical: 'top',
-              horizontal: 'right',
-            }
-          }}
-          options={["Edit", "Remove", "Duplicate"]} />
+          < PopList 
+            anchorOrigin={
+              {vertical: 'center',
+              horizontal: 'center'}
+                    }
+            transformOrigin={
+              {vertical: 'top',
+              horizontal: 'right'}
+                    }
+            options={["Edit", "Remove", "Duplicate"]} />
 
       </div>
       <Separator />

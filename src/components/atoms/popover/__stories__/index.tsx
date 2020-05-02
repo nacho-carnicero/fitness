@@ -9,16 +9,13 @@ export default {
 export const DefaultPop = () => {
 
     return (< PopList
-        location={
-            {
-                but: {
-                    vertical: 'center',
-                    horizontal: 'center',
-                },
-                pop: {
-                    vertical: 'top',
-                    horizontal: 'right',
-                }
-            }}
+        anchorOrigin={
+            {vertical: 'center',
+            horizontal: 'center'}
+                    }
+        transformOrigin={
+            {vertical: 'top',
+            horizontal: 'right'}
+                    }
         options={["Edit", "Remove", "Duplicate"]} />)
 };

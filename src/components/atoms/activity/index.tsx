@@ -51,17 +51,15 @@ export const Activity = ({
         >
           {exercise.name}
         </Text>
-        < PopList location={
-          {
-            but: {
-              vertical: 'center',
-              horizontal: 'center',
-            },
-            pop: {
-              vertical: 'top',
-              horizontal: 'right',
-            }
-          }}
+        < PopList 
+          anchorOrigin={
+            {vertical: 'center',
+            horizontal: 'center'}
+                  }
+          transformOrigin={
+            {vertical: 'top',
+            horizontal: 'right'}
+                  }
           options={["Edit", "Remove", "Duplicate"]} />
       </div>
       <Text

@@ -34,17 +34,15 @@ const TrainingHeader = ({ addCircuit }: { addCircuit: () => void }) => (
   >
     <div style={{ margin: 5 }}></div>
     <div style={{ margin: 5 }}>
-    < PopList location={
-          {
-            but: {
-              vertical: 'center',
-              horizontal: 'center',
-            },
-            pop: {
-              vertical: 'top',
-              horizontal: 'right',
-            }
-          }}
+      < PopList 
+          anchorOrigin={
+            {vertical: 'center',
+            horizontal: 'center'}
+                  }
+          transformOrigin={
+            {vertical: 'top',
+            horizontal: 'right'}
+                  }
           options={["Add", "Edit", "Remove", "Duplicate"]} />
     </div>
   </div>
