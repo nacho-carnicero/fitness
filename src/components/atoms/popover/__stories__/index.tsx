@@ -1,5 +1,5 @@
 import React from "react";
-import { PopList, SimplePopover } from "../";
+import { PopList } from "../";
 
 export default {
     title: "PopList",
@@ -8,24 +8,17 @@ export default {
 
 export const DefaultPop = () => {
 
-    const but = <button />
     return (< PopList
         location={
             {
                 but: {
                     vertical: 'center',
-                    horizontal: 'right',
+                    horizontal: 'center',
                 },
                 pop: {
-                    vertical: 'center',
+                    vertical: 'top',
                     horizontal: 'right',
                 }
             }}
         options={["Edit", "Remove", "Duplicate"]} />)
 };
-
-export const ExamplePop = () => {
-
-    return < SimplePopover />
-};
-

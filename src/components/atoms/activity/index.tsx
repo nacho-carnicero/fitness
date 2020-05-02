@@ -55,10 +55,10 @@ export const Activity = ({
           {
             but: {
               vertical: 'center',
-              horizontal: 'right',
+              horizontal: 'center',
             },
             pop: {
-              vertical: 'center',
+              vertical: 'top',
               horizontal: 'right',
             }
           }}

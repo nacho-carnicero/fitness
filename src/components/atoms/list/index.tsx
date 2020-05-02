@@ -20,18 +20,28 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type props = {
-    options?: Array<String>;   /// ADD CALLBACK FUNCTIONS
+    options?: Array<String>,
+    optionsCall?: Array<Function>, 
+    closure?: Function,
 };
 
 export function OptionsList(props: props) {
     const classes = useStyles();
+    
     const theOptions = props.options || ["Edit", "Remove", "Duplicate"]
+    const theCallBacks = props.optionsCall || theOptions.map((opt) => () => {console.log(opt)}) 
 
-    const ListObject = theOptions.map((option) => {
+    const closeAndCall = (indx) => {
+        props.closure()
+        theCallBacks[indx]()
+    }
+
+    const ListObject = theOptions.map((option, indx) => {
         return (
             <ListItem
                 button
-                onClick={() => { }}
+                onClick={() => closeAndCall(indx)}
+                key={indx}
             >
                 <Text>{option}</Text>
             </ListItem>
