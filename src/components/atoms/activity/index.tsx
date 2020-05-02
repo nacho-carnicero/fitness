@@ -34,7 +34,7 @@ export const Activity = ({
     ...style
   }));
 
-  const [completed, setCompleted] = React.useState(0);
+  const [completed, setCompleted] = React.useState(status === 'finished' ? 100 : 0);
   const [timerID, setTimerID] = React.useState(0);
 
   React.useEffect(() => {
