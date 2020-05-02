@@ -1,5 +1,5 @@
 import { map, filter } from "lodash/fp";
-import { Training, Circuit, Activity } from "../types";
+import { Training, Circuit, Activity } from "../../types";
 
 /**
  * Function that deletes an activty from the training

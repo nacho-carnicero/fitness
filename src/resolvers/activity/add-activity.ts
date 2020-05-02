@@ -1,6 +1,6 @@
 import cuid from "cuid";
 import { get, map } from "lodash/fp";
-import { Training, ActivityInputToAddActivity, Circuit } from "../types";
+import { Training, ActivityInputToAddActivity, Circuit } from "../../types";
 
 const defaultEmptyActivity = {
   type: "activity",

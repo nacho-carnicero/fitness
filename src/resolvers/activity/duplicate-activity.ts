@@ -1,12 +1,6 @@
 import cuid from "cuid";
 import { get, map, reduce } from "lodash/fp";
-import { Training, Activity, Circuit } from "../types";
-
-const defaultEmptyActivity = {
-  type: "activity",
-  exercise: { name: "New exercise" },
-  time: 0
-};
+import { Training, Activity, Circuit } from "../../types";
 
 /**
  * Function that duplicates an activty in a circuit in the current training plan

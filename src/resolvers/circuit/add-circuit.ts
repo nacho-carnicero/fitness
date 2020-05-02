@@ -1,6 +1,6 @@
 import cuid from "cuid";
 import { get } from "lodash/fp";
-import { Training, CircuitInputToAddCircuit } from "../types";
+import { Training, CircuitInputToAddCircuit } from "../../types";
 
 const defaultEmptyCircuit = { type: "circuit", plan: [] };
 

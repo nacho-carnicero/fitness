@@ -1,5 +1,5 @@
 import { filter, getOr } from "lodash/fp";
-import { Training, Circuit } from "../types";
+import { Training, Circuit } from "../../types";
 
 /**
  * Function that deletes a circuit in the current training plan
