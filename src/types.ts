@@ -45,5 +45,5 @@ export type Training = {
 
 export type AddCircuit = (
   previousTraining: Training,
-  newCircuit: CircuitInputToAddCircuit
+  newCircuit?: CircuitInputToAddCircuit
 ) => Training;
