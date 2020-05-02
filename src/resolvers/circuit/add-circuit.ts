@@ -1,6 +1,6 @@
 import cuid from "cuid";
 import { get } from "lodash/fp";
-import { Training, CircuitInputToAddCircuit } from "../../types";
+import { Training, CircuitInputToAddCircuit, AddCircuit } from "../../types";
 
 const defaultEmptyCircuit = { type: "circuit", plan: [] };
 
@@ -9,7 +9,7 @@ const defaultEmptyCircuit = { type: "circuit", plan: [] };
  * @param previousTraining training object before adding the new circuit
  * @param newCircuit circuit object to be added to the training
  */
-export const addCircuit = (
+export const addCircuit: AddCircuit = (
   previousTraining: Training,
   newCircuit: CircuitInputToAddCircuit = defaultEmptyCircuit
 ): Training => {

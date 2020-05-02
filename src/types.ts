@@ -42,3 +42,8 @@ export type Training = {
   plan: Circuit[];
   name?: string;
 };
+
+export type AddCircuit = (
+  previousTraining: Training,
+  newCircuit: CircuitInputToAddCircuit
+) => Training;

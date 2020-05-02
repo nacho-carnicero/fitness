@@ -36,6 +36,7 @@ const ItemsList = React.memo(function ItemsList({
 
 type props = {
   listId: string;
+  children: React.ReactNode;
 };
 
 export function DraggableList(props: props) {
