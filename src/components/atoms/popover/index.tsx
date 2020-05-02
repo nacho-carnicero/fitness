@@ -5,9 +5,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 
 type props = {
-    location: Object,
+    anchorOrigin: any,
+    transformOrigin: any,
     options: Array<String>, 
-    optionsCall: Array<Function>
+    optionsCall?: Array<Function>
 };
 
 export function PopList(props: props) {
@@ -40,14 +41,8 @@ export function PopList(props: props) {
                 open={open}
                 anchorEl={anchorEl}
                 onClose={handleClose}
-                anchorOrigin={{
-                    vertical: props.location.but.vertical,
-                    horizontal: props.location.but.horizontal,
-                }}
-                transformOrigin={{
-                    vertical: props.location.pop.vertical,
-                    horizontal: props.location.pop.horizontal,
-                }}
+                anchorOrigin={props.anchorOrigin}
+                transformOrigin={props.transformOrigin}
             >
                 < OptionsList
                     options={props.options} 
