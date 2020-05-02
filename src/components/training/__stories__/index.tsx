@@ -14,23 +14,33 @@ const Window = styled.div`
 `;
 
 export const Basic = () => (
-  <DragDropContext>
+  <DragDropContext onDragEnd={() => {}}>
     <Window>
-      <Training />
+      <Training training={null} addCircuit={() => {}} />
     </Window>
   </DragDropContext>
 );
 
 const training = {
+  id: "coiasboiasbdobsai",
   type: "high-intensity-interval-training",
   name: "Example training",
   plan: [
     {
+      id: "coiasbcoibsaoib",
       type: "Circuit",
       status: "finished",
       plan: [
-        { exercise: { name: "Crunch" }, time: 30, status: "finished" },
         {
+          id: "coiasndoisabdoia",
+          type: "activity",
+          exercise: { name: "Crunch" },
+          time: 30,
+          status: "finished"
+        },
+        {
+          id: "coasindbosidoasboiba",
+          type: "activity",
           exercise: { name: "Mountain climbers" },
           time: 30,
           status: "finished"
@@ -38,28 +48,52 @@ const training = {
       ]
     },
     {
+      id: "copasindpsianodsain",
       type: "Circuit",
       status: "executing",
       plan: [
-        { exercise: { name: "Squat" }, time: 30, status: "finished" },
-        { exercise: { name: "Push ups" }, time: 45, status: "executing" }
+        {
+          id: "cpsaidnpasindoaisboid",
+          type: "activity",
+          exercise: { name: "Squat" },
+          time: 30,
+          status: "finished"
+        },
+        {
+          id: "coasibdoiasbodbsa",
+          type: "activity",
+          exercise: { name: "Push ups" },
+          time: 45,
+          status: "executing"
+        }
       ]
     },
     {
       type: "Circuit",
+      id: "coisabndoisabno",
       status: "planned",
       plan: [
-        { exercise: { name: "Jumping jacks" }, time: 30 },
-        { exercise: { name: "Spider crawl" }, time: 45 }
+        {
+          id: "coisabndoisabno",
+          type: "activity",
+          exercise: { name: "Jumping jacks" },
+          time: 30
+        },
+        {
+          id: "cpoajsdpoapdn",
+          type: "activity",
+          exercise: { name: "Spider crawl" },
+          time: 45
+        }
       ]
     }
   ]
 };
 
 export const WithContent = () => (
-  <DragDropContext>
+  <DragDropContext onDragEnd={() => {}}>
     <Window>
-      <Training training={training} />
+      <Training training={training} addCircuit={() => {}} />
     </Window>
   </DragDropContext>
 );

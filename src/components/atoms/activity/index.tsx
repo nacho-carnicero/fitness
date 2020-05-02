@@ -8,7 +8,7 @@ export type ActivityProps = {
   exercise: Exercise;
   time: number;
   style?: any;
-  status?: "planned" | "executing" | "finished";
+  status?: string;
 };
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
