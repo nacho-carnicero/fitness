@@ -10,10 +10,16 @@ import {
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
+import { Training as TrainingType, Circuit as CircuitType } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
 
-const TrainingHeader = ({ addCircuit }) => (
+type Props = {
+  training: TrainingType | null;
+  addCircuit: () => void;
+};
+
+const TrainingHeader = ({ addCircuit }: { addCircuit: () => void }) => (
   <div
     style={{
       height: headerHeight,
@@ -44,14 +50,14 @@ const TrainingContainer = styled.div({
   height: "100%"
 });
 
-const getContentFromTraining = training => {
-  const content = mapUncapped((circuit, circuitIndex) => {
+const getContentFromTraining = (training: TrainingType): React.ReactNode => {
+  const content = mapUncapped((circuit: CircuitType, circuitIndex: number) => {
     return <Circuit circuitIndex={circuitIndex} plan={circuit.plan}></Circuit>;
   }, get("plan", training));
   return content;
 };
 
-export const Training = props => {
+export const Training = (props: Props) => {
   return (
     <div
       style={{
@@ -61,7 +67,7 @@ export const Training = props => {
         flexDirection: "column"
       }}
     >
-      <TrainingHeader />
+      <TrainingHeader addCircuit={props.addCircuit} />
       <TrainingContainer>
         {getContentFromTraining(props.training)}
       </TrainingContainer>

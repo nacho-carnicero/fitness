@@ -18,10 +18,10 @@ const StyledElement = styled.div`
 `;
 
 const reorder = (
-  list: React.FC[],
+  list: React.ReactNode[],
   startIndex: number,
   endIndex: number
-): React.FC[] => {
+): React.ReactNode[] => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
@@ -30,7 +30,7 @@ const reorder = (
 };
 
 export const ExampleList = () => {
-  const intialItems = [
+  const intialItems: React.ReactNode[] = [
     <StyledElement key="element0">Element 0</StyledElement>,
     <StyledElement key="element1">Element 1</StyledElement>,
     <StyledElement key="element2">Element 2</StyledElement>,

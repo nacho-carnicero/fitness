@@ -14,7 +14,7 @@ const Window = styled.div`
 `;
 
 export const NoActivity = () => (
-  <DragDropContext>
+  <DragDropContext onDragEnd={() => {}}>
     <Window>
       <Circuit circuitIndex={0} plan={[]} />
     </Window>
@@ -22,7 +22,7 @@ export const NoActivity = () => (
 );
 
 export const WithActivities = () => (
-  <DragDropContext>
+  <DragDropContext onDragEnd={() => {}}>
     <Window>
       <Circuit
         circuitIndex={0}
