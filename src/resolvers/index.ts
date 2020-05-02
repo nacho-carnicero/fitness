@@ -1,2 +1,2 @@
 export { addActivity, removeActivity, duplicateActivity } from "./activity";
-export { addCircuit, removeCircuit } from "./circuit";
+export { addCircuit, removeCircuit, renameCircuit } from "./circuit";
