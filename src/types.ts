@@ -1,4 +1,4 @@
-type Exercise = { name: string };
+export type Exercise = { name: string };
 
 export type Activity = {
   id: string;
@@ -21,6 +21,8 @@ export type ActivityParametersInputToEditActivity = {
   time?: number;
   status?: string;
 };
+
+export type ActivityProps = Activity & { style?: any; edit?: boolean };
 
 export type Circuit = {
   id: string;

@@ -6,10 +6,15 @@ export default {
   component: Activity
 };
 
-const exercise = { name: "Squat" };
-const time = 30;
+const activity = {
+  type: "activity",
+  id: "coaisndoiasndonas",
+  exercise: { name: "Squat" },
+  time: 30
+};
 
-export const Basic = () => <Activity {...{ exercise, time }} />;
+export const Basic = () => <Activity {...activity} />;
+export const Editing = () => <Activity edit {...activity} />;
 export const Executing = () => (
-  <Activity {...{ exercise, time, status: "executing" }} />
+  <Activity {...{ ...activity, status: "executing" }} />
 );
