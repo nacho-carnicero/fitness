@@ -16,6 +16,12 @@ export type ActivityInputToAddActivity = {
   status?: string;
 };
 
+export type ActivityParametersInputToEditActivity = {
+  exercise?: Exercise;
+  time?: number;
+  status?: string;
+};
+
 export type Circuit = {
   id: string;
   type: string;
