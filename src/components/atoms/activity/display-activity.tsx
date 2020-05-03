@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { Text } from "../text";
@@ -26,12 +26,10 @@ export const DisplayActivity = ({
     ...style
   }));
 
-  const [completed, setCompleted] = React.useState(
-    status === "finished" ? 100 : 0
-  );
-  const [timerID, setTimerID] = React.useState(0);
+  const [completed, setCompleted] = useState(status === "finished" ? 100 : 0);
+  const [timerID, setTimerID] = useState(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     function progress(timeRef) {
       setCompleted(() => {
         const diff = (Date.now() - timeRef) / 1 / time; // CHANGE 1 FOR 10 FOR REAL TIME
@@ -48,7 +46,7 @@ export const DisplayActivity = ({
         clearInterval(timer);
       };
     }
-  }, []);
+  }, [status, time, completed]);
 
   if (completed === 100) {
     // CHANGE STATUS ////////////////////////////////////////////

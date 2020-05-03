@@ -30,6 +30,7 @@ export type Circuit = {
   type: string;
   plan: Activity[];
   name?: string;
+  __typename?: string;
 };
 
 export type CircuitInputToAddCircuit = {
@@ -52,24 +53,23 @@ export type AddCircuit = (
 ) => Training;
 
 export type Popover = {
-  anchorOrigin: any,
-  transformOrigin: any,
-  options: Array<String>,
-  optionsCall?: Array<Function>
+  anchorOrigin: any;
+  transformOrigin: any;
+  options: Array<String>;
+  optionsCall?: Array<Function>;
 };
 
 export type PopList = {
-  options: Array<String>,
-  optionsCall?: Array<Function>
-  closure?: Function,
+  options: Array<String>;
+  optionsCall?: Array<Function>;
+  closure?: Function;
 };
 
 export type TrainingHeader = {
-  addCircuit: AddCircuit,
-  state: String,
+  addCircuit: () => void;
+  state: String;
 };
 
 export type TrainingControls = {
   state: String;
 };
-
