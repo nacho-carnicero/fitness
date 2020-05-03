@@ -18,3 +18,4 @@ export const Editing = () => <Activity edit {...activity} />;
 export const Executing = () => (
   <Activity {...{ ...activity, status: "executing" }} />
 );
+export const Finished = () => <Activity {...{ exercise, time, status: "finished"  }} />;
