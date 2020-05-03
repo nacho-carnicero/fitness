@@ -3,15 +3,13 @@ import Popover from '@material-ui/core/Popover';
 import { OptionsList } from "../list"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import { Popover as PopoverType } from "../../../types";
 
-type props = {
-    anchorOrigin: any,
-    transformOrigin: any,
-    options: Array<String>,
-    optionsCall?: Array<Function>
-};
-
-export function PopList(props: props) {
+export function PopList({
+    anchorOrigin,
+    transformOrigin,
+    options,
+    optionsCall }: PopoverType) {
 
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -41,12 +39,12 @@ export function PopList(props: props) {
                 open={open}
                 anchorEl={anchorEl}
                 onClose={handleClose}
-                anchorOrigin={props.anchorOrigin}
-                transformOrigin={props.transformOrigin}
+                anchorOrigin={anchorOrigin}
+                transformOrigin={transformOrigin}
             >
                 < OptionsList
-                    options={props.options}
-                    optionsCall={props.optionsCall}
+                    options={options}
+                    optionsCall={optionsCall}
                     closure={handleClose} />
             </Popover>
         </div >

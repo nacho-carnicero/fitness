@@ -14,9 +14,9 @@ const Window = styled.div`
 `;
 
 export const Basic = () => (
-  <DragDropContext onDragEnd={() => {}}>
+  <DragDropContext onDragEnd={() => { }}>
     <Window>
-      <Training training={null} addCircuit={() => {}} />
+      <Training training={null} addCircuit={() => { }} />
     </Window>
   </DragDropContext>
 );
@@ -91,9 +91,9 @@ const training = {
 };
 
 export const WithContent = () => (
-  <DragDropContext onDragEnd={() => {}}>
+  <DragDropContext onDragEnd={() => { }}>
     <Window>
-      <Training training={training} addCircuit={() => {}} />
+      <Training training={training} addCircuit={() => { }} />
     </Window>
   </DragDropContext>
 );

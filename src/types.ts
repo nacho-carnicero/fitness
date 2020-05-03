@@ -1,4 +1,4 @@
-type Exercise = { name: string };
+export type Exercise = { name: string };
 
 export type Activity = {
   id: string;
@@ -14,6 +14,7 @@ export type ActivityInputToAddActivity = {
   exercise: Exercise;
   time: number;
   status?: string;
+  style?: any;
 };
 
 export type ActivityParametersInputToEditActivity = {
@@ -21,6 +22,8 @@ export type ActivityParametersInputToEditActivity = {
   time?: number;
   status?: string;
 };
+
+export type ActivityProps = Activity & { style?: any; edit?: boolean };
 
 export type Circuit = {
   id: string;
@@ -48,9 +51,25 @@ export type AddCircuit = (
   newCircuit?: CircuitInputToAddCircuit
 ) => Training;
 
-export type PopList = {
+export type Popover = {
   anchorOrigin: any,
   transformOrigin: any,
   options: Array<String>,
   optionsCall?: Array<Function>
 };
+
+export type PopList = {
+  options: Array<String>,
+  optionsCall?: Array<Function>
+  closure?: Function,
+};
+
+export type TrainingHeader = {
+  addCircuit: AddCircuit,
+  state: String,
+};
+
+export type TrainingControls = {
+  state: String;
+};
+
