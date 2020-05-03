@@ -56,26 +56,30 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
           flexDirection: "row",
         }}
       >
-          <Text
-            style={{
-              height: headerHeight,
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex", 
-              flex: 1
-            }}
-            bold
-          >{`Circuit ${circuitIndex + 1}`}</Text>
-          < PopList 
-            anchorOrigin={
-              {vertical: 'center',
-              horizontal: 'center'}
-                    }
-            transformOrigin={
-              {vertical: 'top',
-              horizontal: 'right'}
-                    }
-            options={["Edit", "Remove", "Duplicate"]} />
+        <Text
+          style={{
+            height: headerHeight,
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            flex: 1
+          }}
+          bold
+        >{`Circuit ${circuitIndex + 1}`}</Text>
+        {< PopList
+          anchorOrigin={
+            {
+              vertical: 'center',
+              horizontal: 'center'
+            }
+          }
+          transformOrigin={
+            {
+              vertical: 'top',
+              horizontal: 'right'
+            }
+          }
+          options={["Edit", "Remove", "Duplicate"]} />}
 
       </div>
       <Separator />

@@ -74,7 +74,7 @@ export const DisplayActivity = ({
         >
           {exercise.name}
         </Text>
-        <PopList
+        {false && <PopList
           anchorOrigin={{
             vertical: "center",
             horizontal: "center"
@@ -84,7 +84,7 @@ export const DisplayActivity = ({
             horizontal: "right"
           }}
           options={["Edit", "Remove", "Duplicate"]}
-        />
+        />}
       </div>
       <Text
         style={{
