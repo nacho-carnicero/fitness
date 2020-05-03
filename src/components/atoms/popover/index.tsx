@@ -7,7 +7,7 @@ import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 type props = {
     anchorOrigin: any,
     transformOrigin: any,
-    options: Array<String>, 
+    options: Array<String>,
     optionsCall?: Array<Function>
 };
 
@@ -45,7 +45,7 @@ export function PopList(props: props) {
                 transformOrigin={props.transformOrigin}
             >
                 < OptionsList
-                    options={props.options} 
+                    options={props.options}
                     optionsCall={props.optionsCall}
                     closure={handleClose} />
             </Popover>

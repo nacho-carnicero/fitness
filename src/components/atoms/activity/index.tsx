@@ -3,7 +3,6 @@ import styled from "@emotion/styled";
 import { Text } from "../text";
 import { PopList } from "../popover"
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { TIMEOUT } from "dns";
 
 type Exercise = { name: string };
 export type ActivityProps = {
@@ -40,31 +39,31 @@ export const Activity = ({
   React.useEffect(() => {
 
     function progress(timeRef) {
-      setCompleted(() => { 
-        const diff = (Date.now() - timeRef) /1 / time  // CHANGE 1 FOR 10 FOR REAL TIME
+      setCompleted(() => {
+        const diff = (Date.now() - timeRef) / 1 / time  // CHANGE 1 FOR 10 FOR REAL TIME
         return Math.min(diff, 100);
       });
     }
 
-    if (status === "executing" && completed === 0){
+    if (status === "executing" && completed === 0) {
       const timeRef = Date.now()
-      const timer = window.setInterval(progress, 16, timeRef); 
+      const timer = window.setInterval(progress, 16, timeRef);
       setTimerID(timer)
-    
+
       return () => {
         clearInterval(timer);
       };
     }
 
-    
+
   }, []);
 
-  if (completed === 100){
+  if (completed === 100) {
     // CHANGE STATUS ////////////////////////////////////////////
-    clearInterval(timerID);  
+    clearInterval(timerID);
   }
-  
-  
+
+
   return (
     <ActivityContainer>
       <div
@@ -84,15 +83,19 @@ export const Activity = ({
         >
           {exercise.name}
         </Text>
-        < PopList 
+        < PopList
           anchorOrigin={
-            {vertical: 'center',
-            horizontal: 'center'}
-                  }
+            {
+              vertical: 'center',
+              horizontal: 'center'
+            }
+          }
           transformOrigin={
-            {vertical: 'top',
-            horizontal: 'right'}
-                  }
+            {
+              vertical: 'top',
+              horizontal: 'right'
+            }
+          }
           options={["Edit", "Remove", "Duplicate"]} />
       </div>
       <Text
@@ -104,7 +107,9 @@ export const Activity = ({
       >
         {`${time} s`}
       </Text>
-      <LinearProgress variant="determinate" value={completed} color={(completed === 0 || completed === 100)  ? 'primary' : 'secondary'} />
+      {status !== 'planned' &&
+        <LinearProgress variant="determinate" value={completed} color={completed === 100 ? 'primary' : 'secondary'} />
+      }
 
     </ActivityContainer>
   );

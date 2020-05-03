@@ -47,3 +47,10 @@ export type AddCircuit = (
   previousTraining: Training,
   newCircuit?: CircuitInputToAddCircuit
 ) => Training;
+
+export type PopList = {
+  anchorOrigin: any,
+  transformOrigin: any,
+  options: Array<String>,
+  optionsCall?: Array<Function>
+};
