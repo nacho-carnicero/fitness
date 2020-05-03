@@ -66,7 +66,7 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
           }}
           bold
         >{`Circuit ${circuitIndex + 1}`}</Text>
-        {< PopList
+        < PopList
           anchorOrigin={
             {
               vertical: 'center',
@@ -79,8 +79,7 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
               horizontal: 'right'
             }
           }
-          options={["Edit", "Remove", "Duplicate"]} />}
-
+          options={["Edit", "Remove", "Duplicate"]} />
       </div>
       <Separator />
 
