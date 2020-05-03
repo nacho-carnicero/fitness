@@ -1,5 +1,5 @@
 import React from "react";
-import { OptionsList, DefaultList } from "../";
+import { OptionsList } from "../";
 
 export default {
     title: "OptionsList",
@@ -12,8 +12,4 @@ export const PopList = () => {
         options={["Edit", "Remove", "Duplicate"]} />)
 };
 
-export const DefaultList_ = () => {
-
-    return < DefaultList />
-};
 
