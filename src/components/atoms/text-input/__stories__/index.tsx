@@ -11,3 +11,4 @@ export const WithPlaceholder = () => (
   <TextInput placeholder="This is a placeholder" />
 );
 export const WithValue = () => <TextInput value="Hello world!" />;
+export const Disabled = () => <TextInput value="Hello world!" disabled />;

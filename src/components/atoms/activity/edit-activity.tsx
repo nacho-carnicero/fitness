@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { PopList } from "../popover";
 import { TextInput } from "../text-input";
 import { ActivityProps } from "../../../types";
 
@@ -43,15 +42,17 @@ export const EditActivity = ({
           bold
           value={exercise.name}
         ></TextInput>
-        <button
-          style={{
-            width: 30,
-            height: 0.75 * 30,
-            borderRadius: 5
+        <PopList
+          anchorOrigin={{
+            vertical: "center",
+            horizontal: "center"
           }}
-        >
-          <FontAwesomeIcon icon={faCheck} />
-        </button>
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right"
+          }}
+          options={["Edit", "Remove", "Duplicate"]}
+        />
       </div>
       <TextInput
         style={{
