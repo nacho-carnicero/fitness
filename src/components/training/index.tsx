@@ -1,27 +1,28 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { map, get } from "lodash/fp";
+import { map, get, getOr } from "lodash/fp";
 import { Circuit } from "../circuit";
 import { neutralColor } from "../../style/colors";
 import { PopList } from "../atoms/popover"
+import { TrainingControls } from "../atoms/trainingControls"
 import {
   defaultBorderRadius,
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
-import { Training as TrainingType, Circuit as CircuitType } from "../../types";
+import { Training as TrainingType, Circuit as CircuitType, TrainingHeader as TrainingHeaderType, AddCircuit as AddCircuitType } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
 
 type Props = {
   training: TrainingType | null;
-  addCircuit: () => void;
+  addCircuit: AddCircuitType;
 };
 
-const TrainingHeader = ({ addCircuit }: { addCircuit: () => void }) => (
+const TrainingHeader = ({ addCircuit, state }: TrainingHeaderType) => (
   <div
     style={{
-      width:'50%',
+      width: '50%',
       height: headerHeight,
       backgroundColor: neutralColor,
       borderRadius: defaultBorderRadius,
@@ -32,18 +33,24 @@ const TrainingHeader = ({ addCircuit }: { addCircuit: () => void }) => (
       alignItems: "center"
     }}
   >
-    <div style={{ margin: 5 }}></div>
     <div style={{ margin: 5 }}>
-      < PopList 
-          anchorOrigin={
-            {vertical: 'center',
-            horizontal: 'center'}
-                  }
-          transformOrigin={
-            {vertical: 'top',
-            horizontal: 'right'}
-                  }
-          options={["Add", "Edit", "Remove", "Duplicate"]} />
+      <TrainingControls state={state} />
+    </div>
+    <div style={{ margin: 5 }}>
+      < PopList
+        anchorOrigin={
+          {
+            vertical: 'center',
+            horizontal: 'center'
+          }
+        }
+        transformOrigin={
+          {
+            vertical: 'top',
+            horizontal: 'right'
+          }
+        }
+        options={["Add", "Edit", "Remove", "Duplicate"]} />
     </div>
   </div>
 );
@@ -71,7 +78,7 @@ export const Training = (props: Props) => {
         flexDirection: "column"
       }}
     >
-      <TrainingHeader addCircuit={props.addCircuit} />
+      <TrainingHeader addCircuit={props.addCircuit} state={getOr('edit', 'state', props)} />
       <TrainingContainer>
         {getContentFromTraining(props.training)}
       </TrainingContainer>

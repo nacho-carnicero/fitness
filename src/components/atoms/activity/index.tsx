@@ -3,14 +3,7 @@ import styled from "@emotion/styled";
 import { Text } from "../text";
 import { PopList } from "../popover"
 import LinearProgress from '@material-ui/core/LinearProgress';
-
-type Exercise = { name: string };
-export type ActivityProps = {
-  exercise: Exercise;
-  time: number;
-  style?: any;
-  status?: string;
-};
+import { ActivityInputToAddActivity as ActivityType } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
 
@@ -19,7 +12,7 @@ export const Activity = ({
   time,
   style,
   status = "planned"
-}: ActivityProps) => {
+}: ActivityType) => {
   const ActivityContainer = styled.div(props => ({
     width: 300,
     height: 100,
