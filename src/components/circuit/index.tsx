@@ -80,6 +80,7 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
             }
           }
           options={["Edit", "Remove", "Duplicate"]} />
+
       </div>
       <Separator />
 
