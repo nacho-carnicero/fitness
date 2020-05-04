@@ -22,7 +22,12 @@ const resolvers = {
           training @client {
             id
             type
-            plan
+            plan {
+              id
+              type
+              name
+              plan
+            }
             name
           }
         }

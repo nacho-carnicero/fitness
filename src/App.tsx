@@ -19,6 +19,9 @@ const trainingQuery = gql`
       name
       plan {
         id
+        type
+        name
+        plan
       }
     }
   }
