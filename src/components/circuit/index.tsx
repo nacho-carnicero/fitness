@@ -52,7 +52,9 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
       <div
         style={{
           display: "flex",
-          flexDirection: "row"
+          flexDirection: "row",
+          alignItems: "center",
+          padding: 5
         }}
       >
         <Text
@@ -64,7 +66,9 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
             flex: 1
           }}
           bold
-        >{`Circuit ${circuitIndex + 1}`}</Text>
+        >
+          {`Circuit ${circuitIndex + 1}`}
+        </Text>
         <PopList
           anchorOrigin={{ vertical: "center", horizontal: "center" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
