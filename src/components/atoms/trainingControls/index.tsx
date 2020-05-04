@@ -13,8 +13,17 @@ export const TrainingControls = ({ state, }: TrainingControlsType) => {
             style={{
                 padding: 5
             }}
-            onClick={() => { console.log('click') }}>
-            <FontAwesomeIcon icon={icon} color={color} />
+        >
+            <button
+                style={{
+                    width: 30,
+                    height: 0.75 * 30,
+                    borderRadius: 5
+                }}
+                onClick={() => { console.log('click') }}
+            >
+                <FontAwesomeIcon icon={icon} color={color} />
+            </button>
         </div>
     );
 
