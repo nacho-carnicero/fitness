@@ -11,6 +11,15 @@ import {
 } from "../../style/layout";
 import { ActivityProps } from "../../types";
 
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+
+const removeCircuitQuery = gql`
+  mutation {
+    removeCircuit @client
+  }
+`;
+
 const mapUncapped = map.convert({ cap: false });
 
 export type CircuitProps = {
@@ -25,6 +34,9 @@ const Separator = styled.div(`
 `);
 
 export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
+
+  const [removeCircuit] = useMutation(removeCircuitQuery);
+
   const items = mapUncapped(
     (elementPlan: ActivityProps, index: number) => (
       <Activity
@@ -72,7 +84,8 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
         <PopList
           anchorOrigin={{ vertical: "center", horizontal: "center" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
-          options={["Edit", "Remove", "Duplicate"]}
+          options={["Remove"]}
+          optionsCall={[() => removeCircuit({ variables: { circuitIndex } }),]}
         />
       </div>
       <Separator />
