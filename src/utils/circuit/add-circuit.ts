@@ -5,7 +5,8 @@ import { Training, CircuitInputToAddCircuit, AddCircuit } from "../../types";
 const defaultEmptyCircuit = {
   type: "circuit",
   plan: [],
-  __typename: "Circuit"
+  __typename: "Circuit",
+  name: null
 };
 
 /**

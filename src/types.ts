@@ -29,7 +29,7 @@ export type Circuit = {
   id: string;
   type: string;
   plan: Activity[];
-  name?: string;
+  name?: string | null;
   __typename?: string;
 };
 
@@ -37,7 +37,8 @@ export type CircuitInputToAddCircuit = {
   id?: string;
   type: string;
   plan: Activity[];
-  name?: string;
+  name?: string | null;
+  __typename?: string;
 };
 
 export type Training = {

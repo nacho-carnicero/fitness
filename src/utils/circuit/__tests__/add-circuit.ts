@@ -22,7 +22,8 @@ test("Add circuit to empty training works", () => {
         type: "circuit",
         plan: [],
         id: "ck9orwp460000oorse5h330it",
-        __typename: "Circuit"
+        __typename: "Circuit",
+        name: null
       }
     ]
   });
@@ -52,7 +53,8 @@ test("Add circuit to non-empty training works", () => {
         type: "circuit",
         plan: [],
         id: "ck9orwp460000oorse5h330it",
-        __typename: "Circuit"
+        __typename: "Circuit",
+        name: null
       }
     ]
   });
@@ -73,7 +75,8 @@ test("Add circuit without setting input circuit adds new default circuit", () =>
         type: "circuit",
         plan: [],
         id: "ck9orwp460000oorse5h330it",
-        __typename: "Circuit"
+        __typename: "Circuit",
+        name: null
       }
     ]
   });
