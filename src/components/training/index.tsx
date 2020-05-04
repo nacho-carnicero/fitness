@@ -28,7 +28,7 @@ type Props = {
 const TrainingHeader = ({ addCircuit, state }: TrainingHeaderType) => (
   <div
     style={{
-      width: "50%",
+      width: "99%",
       height: headerHeight,
       backgroundColor: neutralColor,
       borderRadius: defaultBorderRadius,
