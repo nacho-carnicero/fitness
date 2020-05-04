@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { Text } from "../text";
-import { PopList } from "../popover";
 import { ActivityProps } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
