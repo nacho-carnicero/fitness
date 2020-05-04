@@ -1,6 +1,6 @@
 import cuid from "cuid";
 import gql from "graphql-tag";
-import { getOr } from "lodash/fp"
+import { get } from "lodash/fp";
 import { Training } from "../../../types";
 import { removeCircuit } from "../../../utils";
 
@@ -33,7 +33,7 @@ const resolvers = {
         }
       `;
       const { training } = cache.readQuery({ query });
-      const newTraining = removeCircuit(training, getOr("", "circuitIndex", variables));
+      const newTraining = removeCircuit(training, get("id", variables));
       const data = {
         training: newTraining
       };
