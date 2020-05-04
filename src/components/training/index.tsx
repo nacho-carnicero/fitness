@@ -83,7 +83,7 @@ const getContentFromTraining = (training: TrainingType): React.ReactNode => {
       <Circuit
         key={`Circuit-${circuit.id}`}
         circuitIndex={circuitIndex}
-        plan={circuit.plan}
+        {...circuit}
       ></Circuit>
     );
   }, get("plan", training));
