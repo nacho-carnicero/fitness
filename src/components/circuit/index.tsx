@@ -9,13 +9,12 @@ import {
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
+import { ActivityProps } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
 
-type Exercise = { name: string };
-type PlanElement = { exercise: Exercise; time: number; status?: string };
 export type CircuitProps = {
-  plan: PlanElement[];
+  plan: ActivityProps[];
   circuitIndex: number;
 };
 
@@ -27,7 +26,7 @@ const Separator = styled.div(`
 
 export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
   const items = mapUncapped(
-    (elementPlan: PlanElement, index: number) => (
+    (elementPlan: ActivityProps, index: number) => (
       <Activity
         style={{ margin: 5 }}
         {...elementPlan}
@@ -53,7 +52,9 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
       <div
         style={{
           display: "flex",
-          flexDirection: "row"
+          flexDirection: "row",
+          alignItems: "center",
+          padding: 5
         }}
       >
         <Text
@@ -65,16 +66,12 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
             flex: 1
           }}
           bold
-        >{`Circuit ${circuitIndex + 1}`}</Text>
+        >
+          {`Circuit ${circuitIndex + 1}`}
+        </Text>
         <PopList
-          anchorOrigin={{
-            vertical: "center",
-            horizontal: "center"
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "right"
-          }}
+          anchorOrigin={{ vertical: "center", horizontal: "center" }}
+          transformOrigin={{ vertical: "top", horizontal: "right" }}
           options={["Edit", "Remove", "Duplicate"]}
         />
       </div>

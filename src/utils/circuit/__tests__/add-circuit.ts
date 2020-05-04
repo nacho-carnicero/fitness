@@ -17,7 +17,15 @@ test("Add circuit to empty training works", () => {
   ).toEqual({
     id: "ck9orwp460000oorse5h330ds",
     type: "training",
-    plan: [{ type: "circuit", plan: [], id: "ck9orwp460000oorse5h330it" }]
+    plan: [
+      {
+        type: "circuit",
+        plan: [],
+        id: "ck9orwp460000oorse5h330it",
+        __typename: "Circuit",
+        name: null
+      }
+    ]
   });
 });
 
@@ -41,7 +49,13 @@ test("Add circuit to non-empty training works", () => {
     plan: [
       { type: "circuit", plan: [], id: "ck9orwp460000oorse5h330gf" },
       { type: "circuit", plan: [], id: "ck9orwp460000oorse5h330jh" },
-      { type: "circuit", plan: [], id: "ck9orwp460000oorse5h330it" }
+      {
+        type: "circuit",
+        plan: [],
+        id: "ck9orwp460000oorse5h330it",
+        __typename: "Circuit",
+        name: null
+      }
     ]
   });
 });
@@ -57,7 +71,13 @@ test("Add circuit without setting input circuit adds new default circuit", () =>
     type: "training",
     plan: [
       { type: "circuit", plan: [], id: "ck9orwp460000oorse5h330gf" },
-      { type: "circuit", plan: [], id: "ck9orwp460000oorse5h330it" }
+      {
+        type: "circuit",
+        plan: [],
+        id: "ck9orwp460000oorse5h330it",
+        __typename: "Circuit",
+        name: null
+      }
     ]
   });
 });

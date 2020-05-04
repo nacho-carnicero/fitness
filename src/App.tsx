@@ -1,34 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "@emotion/styled";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import { get } from "lodash/fp";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Training } from "./components/training";
-import { Training as TrainingType } from "./types";
-import { addCircuit } from "./resolvers";
 
 const Window = styled.div`
   width: ${window.innerWidth}px;
   height: ${window.innerHeight}px;
 `;
 
-const emptyTraining: TrainingType = {
-  id: "coiasbdoiasboida",
-  type: "training",
-  plan: [],
-  name: "New training"
-};
+const trainingQuery = gql`
+  {
+    training @client {
+      id
+      type
+      name
+      plan {
+        id
+        type
+        name
+        plan
+      }
+    }
+  }
+`;
+
+const addCircuitQuery = gql`
+  mutation {
+    addCircuit @client
+  }
+`;
 
 function App() {
-  const [training, setTraining] = useState(emptyTraining);
+  const trainingQueryResponse = useQuery(trainingQuery);
+  const [addCircuit] = useMutation(addCircuitQuery);
+  const training = get("data.training", trainingQueryResponse);
   return (
     <DragDropContext onDragEnd={() => {}}>
       <Window>
-        <Training
-          training={training}
-          addCircuit={() => {
-            const newTraining = addCircuit(training);
-            setTraining(newTraining);
-          }}
-        />
+        <Training training={training} addCircuit={addCircuit} />
       </Window>
     </DragDropContext>
   );

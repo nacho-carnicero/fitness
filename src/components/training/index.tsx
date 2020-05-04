@@ -2,27 +2,33 @@ import React from "react";
 import styled from "@emotion/styled";
 import { map, get, getOr } from "lodash/fp";
 import { Circuit } from "../circuit";
+import { PopList } from "../atoms/popover";
 import { neutralColor } from "../../style/colors";
-import { PopList } from "../atoms/popover"
-import { TrainingControls } from "../atoms/trainingControls"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { TrainingControls } from "../atoms/trainingControls";
 import {
   defaultBorderRadius,
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
-import { Training as TrainingType, Circuit as CircuitType, TrainingHeader as TrainingHeaderType, AddCircuit as AddCircuitType } from "../../types";
+import {
+  Training as TrainingType,
+  Circuit as CircuitType,
+  TrainingHeader as TrainingHeaderType
+} from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
 
 type Props = {
   training: TrainingType | null;
-  addCircuit: AddCircuitType;
+  addCircuit: () => void;
 };
 
 const TrainingHeader = ({ addCircuit, state }: TrainingHeaderType) => (
   <div
     style={{
-      width: '50%',
+      width: "99%",
       height: headerHeight,
       backgroundColor: neutralColor,
       borderRadius: defaultBorderRadius,
@@ -36,21 +42,31 @@ const TrainingHeader = ({ addCircuit, state }: TrainingHeaderType) => (
     <div style={{ margin: 5 }}>
       <TrainingControls state={state} />
     </div>
-    <div style={{ margin: 5 }}>
-      < PopList
-        anchorOrigin={
-          {
-            vertical: 'center',
-            horizontal: 'center'
-          }
-        }
-        transformOrigin={
-          {
-            vertical: 'top',
-            horizontal: 'right'
-          }
-        }
-        options={["Add", "Edit", "Remove", "Duplicate"]} />
+    <div style={{ margin: 5, flexDirection: "row", display: "flex" }}>
+      <button
+        style={{
+          width: 30,
+          height: 0.75 * 30,
+          borderRadius: 5,
+          marginRight: 5
+        }}
+        onClick={() => {
+          addCircuit();
+        }}
+      >
+        <FontAwesomeIcon icon={faPlus} />
+      </button>
+      <PopList
+        anchorOrigin={{
+          vertical: "center",
+          horizontal: "center"
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "right"
+        }}
+        options={["Edit", "Remove", "Duplicate"]}
+      />
     </div>
   </div>
 );
@@ -63,7 +79,13 @@ const TrainingContainer = styled.div({
 
 const getContentFromTraining = (training: TrainingType): React.ReactNode => {
   const content = mapUncapped((circuit: CircuitType, circuitIndex: number) => {
-    return <Circuit circuitIndex={circuitIndex} plan={circuit.plan}></Circuit>;
+    return (
+      <Circuit
+        key={`Circuit-${circuit.id}`}
+        circuitIndex={circuitIndex}
+        plan={circuit.plan}
+      ></Circuit>
+    );
   }, get("plan", training));
   return content;
 };
@@ -78,7 +100,10 @@ export const Training = (props: Props) => {
         flexDirection: "column"
       }}
     >
-      <TrainingHeader addCircuit={props.addCircuit} state={getOr('edit', 'state', props)} />
+      <TrainingHeader
+        addCircuit={props.addCircuit}
+        state={getOr("edit", "state", props)}
+      />
       <TrainingContainer>
         {getContentFromTraining(props.training)}
       </TrainingContainer>
