@@ -51,7 +51,6 @@ const TrainingHeader = ({ addCircuit, state }: TrainingHeaderType) => (
           marginRight: 5
         }}
         onClick={() => {
-          console.log(addCircuit);
           addCircuit();
         }}
       >

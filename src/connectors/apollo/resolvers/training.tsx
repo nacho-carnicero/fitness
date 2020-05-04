@@ -16,7 +16,6 @@ const initialState: { training: Training & { __typename: string } } = {
 const resolvers = {
   Mutation: {
     addCircuit: (_, variables, { cache }) => {
-      console.log("Will execute query!");
       const query = gql`
         {
           training @client {
@@ -34,7 +33,6 @@ const resolvers = {
       `;
       const { training } = cache.readQuery({ query });
       const newTraining = addCircuit(training);
-      console.log("New query:", newTraining);
       const data = {
         training: newTraining
       };

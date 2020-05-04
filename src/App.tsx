@@ -37,7 +37,6 @@ function App() {
   const trainingQueryResponse = useQuery(trainingQuery);
   const [addCircuit] = useMutation(addCircuitQuery);
   const training = get("data.training", trainingQueryResponse);
-  console.log("Training", trainingQueryResponse);
   return (
     <DragDropContext onDragEnd={() => {}}>
       <Window>
