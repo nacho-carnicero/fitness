@@ -3,7 +3,7 @@ import { map } from "lodash/fp";
 import styled from "@emotion/styled";
 import { DraggableList, Activity, Text } from "../atoms/";
 import { neutralColor, defaultShadowColor } from "../../style/colors";
-import { PopList } from "../atoms/popover"
+import { PopList } from "../atoms/popover";
 import {
   defaultBorderRadius,
   defaultBoxShadow,
@@ -53,7 +53,7 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "row"
         }}
       >
         <Text
@@ -66,21 +66,17 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
           }}
           bold
         >{`Circuit ${circuitIndex + 1}`}</Text>
-        < PopList
-          anchorOrigin={
-            {
-              vertical: 'center',
-              horizontal: 'center'
-            }
-          }
-          transformOrigin={
-            {
-              vertical: 'top',
-              horizontal: 'right'
-            }
-          }
-          options={["Edit", "Remove", "Duplicate"]} />
-
+        <PopList
+          anchorOrigin={{
+            vertical: "center",
+            horizontal: "center"
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right"
+          }}
+          options={["Edit", "Remove", "Duplicate"]}
+        />
       </div>
       <Separator />
 
