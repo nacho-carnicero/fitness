@@ -15,8 +15,8 @@ import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
 const removeCircuitQuery = gql`
-  mutation {
-    removeCircuit @client
+  mutation($id: ID) {
+    removeCircuit(id: $id) @client
   }
 `;
 
