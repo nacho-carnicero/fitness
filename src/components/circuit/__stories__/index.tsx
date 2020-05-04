@@ -12,11 +12,13 @@ const Window = styled.div`
   width: ${window.outerWidth}px;
   height: ${window.outerHeight}px;
 `;
+const id = "coiansdoisanodinasid";
+const type = "circuit";
 
 export const NoActivity = () => (
   <DragDropContext onDragEnd={() => {}}>
     <Window>
-      <Circuit circuitIndex={0} plan={[]} />
+      <Circuit circuitIndex={0} plan={[]} {...{ id, type }} />
     </Window>
   </DragDropContext>
 );
@@ -54,6 +56,7 @@ export const WithActivities = () => (
             time: 15
           }
         ]}
+        {...{ id, type }}
       />
     </Window>
   </DragDropContext>

@@ -9,7 +9,7 @@ import {
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
-import { ActivityProps } from "../../types";
+import { Circuit as CircuitType, ActivityProps } from "../../types";
 
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
@@ -22,10 +22,7 @@ const removeCircuitQuery = gql`
 
 const mapUncapped = map.convert({ cap: false });
 
-export type CircuitProps = {
-  plan: ActivityProps[];
-  circuitIndex: number;
-};
+export type CircuitProps = CircuitType & { circuitIndex: number };
 
 const Separator = styled.div(`
   width:100%;
@@ -33,8 +30,7 @@ const Separator = styled.div(`
   background-color: ${defaultShadowColor}
 `);
 
-export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
-
+export const Circuit = ({ plan, circuitIndex, id }: CircuitProps) => {
   const [removeCircuit] = useMutation(removeCircuitQuery);
 
   const items = mapUncapped(
@@ -85,7 +81,7 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
           anchorOrigin={{ vertical: "center", horizontal: "center" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
           options={["Remove"]}
-          optionsCall={[() => removeCircuit({ variables: { circuitIndex } }),]}
+          optionsCall={[() => removeCircuit({ variables: { id } })]}
         />
       </div>
       <Separator />
