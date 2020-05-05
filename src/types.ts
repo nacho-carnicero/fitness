@@ -23,7 +23,7 @@ export type ActivityParametersInputToEditActivity = {
   status?: string;
 };
 
-export type ActivityProps = Activity & { style?: any; edit?: boolean };
+export type ActivityProps = Activity & { style?: any; edit: boolean };
 
 export type Circuit = {
   id: string;
@@ -45,6 +45,7 @@ export type Training = {
   id: string;
   type: string;
   plan: Circuit[];
+  edit: boolean,
   name?: string;
 };
 

@@ -78,12 +78,14 @@ const TrainingContainer = styled.div({
 });
 
 const getContentFromTraining = (training: TrainingType): React.ReactNode => {
+  const editMode = training.edit;
   const content = mapUncapped((circuit: CircuitType, circuitIndex: number) => {
     return (
       <Circuit
         key={`Circuit-${circuit.id}`}
         circuitIndex={circuitIndex}
         {...circuit}
+        edit={editMode}
       ></Circuit>
     );
   }, get("plan", training));

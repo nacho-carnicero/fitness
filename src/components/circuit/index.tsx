@@ -20,9 +20,15 @@ const removeCircuitQuery = gql`
   }
 `;
 
+const addActivityQuery = gql`
+  mutation($id: ID) {
+    addActivity(id: $id) @client
+  }
+`;
+
 const mapUncapped = map.convert({ cap: false });
 
-export type CircuitProps = CircuitType & { circuitIndex: number };
+export type CircuitProps = CircuitType & { circuitIndex: number } & { edit: boolean };
 
 const Separator = styled.div(`
   width:100%;
@@ -30,8 +36,9 @@ const Separator = styled.div(`
   background-color: ${defaultShadowColor}
 `);
 
-export const Circuit = ({ plan, circuitIndex, id }: CircuitProps) => {
+export const Circuit = ({ plan, circuitIndex, id, edit }: CircuitProps) => {
   const [removeCircuit] = useMutation(removeCircuitQuery);
+  const [addActivity] = useMutation(addActivityQuery);
 
   const items = mapUncapped(
     (elementPlan: ActivityProps, index: number) => (
@@ -39,6 +46,7 @@ export const Circuit = ({ plan, circuitIndex, id }: CircuitProps) => {
         style={{ margin: 5 }}
         {...elementPlan}
         key={`circuit${circuitIndex}-activity${index}`}
+        edit={edit}
       />
     ),
     plan
@@ -80,8 +88,11 @@ export const Circuit = ({ plan, circuitIndex, id }: CircuitProps) => {
         <PopList
           anchorOrigin={{ vertical: "center", horizontal: "center" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
-          options={["Remove"]}
-          optionsCall={[() => removeCircuit({ variables: { id } })]}
+          options={["Remove", "Add"]}
+          optionsCall={
+            [() => removeCircuit({ variables: { id } }),
+            () => addActivity({ variables: { id } })
+            ]}
         />
       </div>
       <Separator />

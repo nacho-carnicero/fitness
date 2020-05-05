@@ -25,6 +25,7 @@ const training = {
   id: "coiasboiasbdobsai",
   type: "high-intensity-interval-training",
   name: "Example training",
+  edit: true,
   plan: [
     {
       id: "coiasbcoibsaoib",

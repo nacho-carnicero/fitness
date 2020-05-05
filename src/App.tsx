@@ -17,6 +17,7 @@ const trainingQuery = gql`
       id
       type
       name
+      edit
       plan {
         id
         type
@@ -37,8 +38,9 @@ function App() {
   const trainingQueryResponse = useQuery(trainingQuery);
   const [addCircuit] = useMutation(addCircuitQuery);
   const training = get("data.training", trainingQueryResponse);
+
   return (
-    <DragDropContext onDragEnd={() => {}}>
+    <DragDropContext onDragEnd={() => { }}>
       <Window>
         <Training training={training} addCircuit={addCircuit} />
       </Window>

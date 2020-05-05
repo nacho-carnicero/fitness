@@ -16,17 +16,18 @@ const id = "coiansdoisanodinasid";
 const type = "circuit";
 
 export const NoActivity = () => (
-  <DragDropContext onDragEnd={() => {}}>
+  <DragDropContext onDragEnd={() => { }}>
     <Window>
-      <Circuit circuitIndex={0} plan={[]} {...{ id, type }} />
+      <Circuit edit={true} circuitIndex={0} plan={[]} {...{ id, type }} />
     </Window>
   </DragDropContext>
 );
 
 export const WithActivities = () => (
-  <DragDropContext onDragEnd={() => {}}>
+  <DragDropContext onDragEnd={() => { }}>
     <Window>
       <Circuit
+        edit={false}
         circuitIndex={0}
         plan={[
           {

@@ -13,11 +13,11 @@ const activity = {
   time: 30
 };
 
-export const Basic = () => <Activity {...activity} />;
+export const Basic = () => <Activity edit={false} {...activity} />;
 export const Editing = () => <Activity edit {...activity} />;
 export const Executing = () => (
-  <Activity {...{ ...activity, status: "executing" }} />
+  <Activity edit={false} {...{ ...activity, status: "executing" }} />
 );
 export const Finished = () => (
-  <Activity {...{ ...activity, status: "finished" }} />
+  <Activity edit={false} {...{ ...activity, status: "finished" }} />
 );

@@ -1,8 +1,9 @@
 import { getOr, reduce } from "lodash/fp";
 import trainingState from "./training";
 import circuitState from "./circuit";
+import activityState from "./activity"
 // Append here the reducers you want to integrate the app
-const reducers = [trainingState, circuitState];
+const reducers = [trainingState, circuitState, activityState];
 
 // Extract and combine resolvers from the reducers stated above
 const resolvers = reduce(

@@ -4,14 +4,33 @@ import { PopList } from "../popover";
 import { TextInput } from "../text-input";
 import { ActivityProps } from "../../../types";
 
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+
+const removeActivityQuery = gql`
+  mutation($id: ID) {
+    removeActivity(id: $id) @client
+  }
+`;
+
+const duplicateActivityQuery = gql`
+  mutation($id: ID) {
+    duplicateActivity(id: $id) @client
+  }
+`;
+
 const executingShadow = "0px 0px 3px 1px #555555AA";
 
 export const EditActivity = ({
   exercise,
   time,
   style,
-  status = "planned"
+  status = "planned",
+  id
 }: ActivityProps) => {
+  const [removeActivity] = useMutation(removeActivityQuery);
+  const [duplicateActivity] = useMutation(duplicateActivityQuery);
+
   const ActivityContainer = styled.div(props => ({
     width: 300,
     height: 100,
@@ -51,7 +70,11 @@ export const EditActivity = ({
             vertical: "top",
             horizontal: "right"
           }}
-          options={["Edit", "Remove", "Duplicate"]}
+          options={["Duplicate", "Remove"]}
+          optionsCall={
+            [() => duplicateActivity({ variables: { id } }),
+            () => removeActivity({ variables: { id } })]
+          }
         />
       </div>
       <TextInput
