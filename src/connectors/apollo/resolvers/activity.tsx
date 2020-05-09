@@ -10,13 +10,21 @@ const resolvers = {
           training @client {
             id
             type
+            name
+            edit
             plan {
               id
               type
               name
-              plan
+              plan {
+                id
+                type
+                time
+                exercise {
+                  name
+                }
+              }
             }
-            name
           }
         }
       `;
@@ -35,13 +43,21 @@ const resolvers = {
           training @client {
             id
             type
+            name
+            edit
             plan {
               id
               type
               name
-              plan
+              plan {
+                id
+                type
+                time
+                exercise {
+                  name
+                }
+              }
             }
-            name
           }
         }
       `;

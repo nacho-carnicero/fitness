@@ -22,7 +22,14 @@ const trainingQuery = gql`
         id
         type
         name
-        plan
+        plan {
+          id
+          type
+          time
+          exercise {
+            name
+          }
+        }
       }
     }
   }
