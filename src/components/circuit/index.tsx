@@ -11,24 +11,14 @@ import {
 } from "../../style/layout";
 import { Circuit as CircuitType, ActivityProps } from "../../types";
 
-import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-
-const removeCircuitQuery = gql`
-  mutation($id: ID) {
-    removeCircuit(id: $id) @client
-  }
-`;
-
-const addActivityQuery = gql`
-  mutation($id: ID) {
-    addActivity(id: $id) @client
-  }
-`;
-
 const mapUncapped = map.convert({ cap: false });
 
-export type CircuitProps = CircuitType & { circuitIndex: number } & { edit: boolean };
+export type CircuitProps = CircuitType & {
+  circuitIndex: number;
+  edit: boolean;
+  addActivity: (options?: { variables: any }) => void;
+  removeCircuit: (options?: { variables: any }) => void;
+};
 
 const Separator = styled.div(`
   width:100%;
@@ -36,10 +26,14 @@ const Separator = styled.div(`
   background-color: ${defaultShadowColor}
 `);
 
-export const Circuit = ({ plan, circuitIndex, id, edit }: CircuitProps) => {
-  const [removeCircuit] = useMutation(removeCircuitQuery);
-  const [addActivity] = useMutation(addActivityQuery);
-
+export const Circuit = ({
+  plan,
+  circuitIndex,
+  id,
+  edit,
+  addActivity,
+  removeCircuit
+}: CircuitProps) => {
   const items = mapUncapped(
     (elementPlan: ActivityProps, index: number) => (
       <Activity
@@ -89,10 +83,10 @@ export const Circuit = ({ plan, circuitIndex, id, edit }: CircuitProps) => {
           anchorOrigin={{ vertical: "center", horizontal: "center" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
           options={["Remove", "Add"]}
-          optionsCall={
-            [() => removeCircuit({ variables: { id } }),
+          optionsCall={[
+            () => removeCircuit({ variables: { id } }),
             () => addActivity({ variables: { id } })
-            ]}
+          ]}
         />
       </div>
       <Separator />
