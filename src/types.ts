@@ -23,7 +23,12 @@ export type ActivityParametersInputToEditActivity = {
   status?: string;
 };
 
-export type ActivityProps = Activity & { style?: any; edit: boolean };
+export type ActivityProps = Activity & {
+  style?: any;
+  edit: boolean;
+  removeActivity: (options?: { variables: any }) => void;
+  duplicateActivity: (options?: { variables: any }) => void;
+};
 
 export type Circuit = {
   id: string;
@@ -31,6 +36,13 @@ export type Circuit = {
   plan: Activity[];
   name?: string | null;
   __typename?: string;
+};
+
+export type CircuitResolvers = {
+  addActivity: (options?: { variables: any }) => void;
+  removeCircuit: (options?: { variables: any }) => void;
+  duplicateActivity: (options?: { variables: any }) => void;
+  removeActivity: (options?: { variables: any }) => void;
 };
 
 export type CircuitInputToAddCircuit = {
@@ -45,7 +57,7 @@ export type Training = {
   id: string;
   type: string;
   plan: Circuit[];
-  edit: boolean,
+  edit: boolean;
   name?: string;
 };
 
@@ -68,12 +80,12 @@ export type PopList = {
 };
 
 export type TrainingControls = {
-  state: String;
+  state: string;
 };
 
 export type TrainingHeader = {
   addCircuit: () => void;
-  state: String;
+  state: string;
 };
 
 export type TrainingProps = {
@@ -83,4 +95,5 @@ export type TrainingProps = {
   addActivity: () => void;
   removeActivity: () => void;
   duplicateActivity: () => void;
+  state?: string;
 };

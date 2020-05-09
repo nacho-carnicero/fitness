@@ -9,16 +9,19 @@ import {
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
-import { Circuit as CircuitType, ActivityProps } from "../../types";
+import {
+  Circuit as CircuitType,
+  ActivityProps,
+  CircuitResolvers
+} from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
 
-export type CircuitProps = CircuitType & {
-  circuitIndex: number;
-  edit: boolean;
-  addActivity: (options?: { variables: any }) => void;
-  removeCircuit: (options?: { variables: any }) => void;
-};
+export type CircuitProps = CircuitType &
+  CircuitResolvers & {
+    circuitIndex: number;
+    edit: boolean;
+  };
 
 const Separator = styled.div(`
   width:100%;
@@ -32,7 +35,9 @@ export const Circuit = ({
   id,
   edit,
   addActivity,
-  removeCircuit
+  removeCircuit,
+  duplicateActivity,
+  removeActivity
 }: CircuitProps) => {
   const items = mapUncapped(
     (elementPlan: ActivityProps, index: number) => (
@@ -41,6 +46,8 @@ export const Circuit = ({
         {...elementPlan}
         key={`circuit${circuitIndex}-activity${index}`}
         edit={edit}
+        duplicateActivity={duplicateActivity}
+        removeActivity={removeActivity}
       />
     ),
     plan

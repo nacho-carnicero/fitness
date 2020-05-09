@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { map, get, getOr } from "lodash/fp";
+import { map, get } from "lodash/fp";
 import { Circuit } from "../circuit";
 import { PopList } from "../atoms/popover";
 import { neutralColor } from "../../style/colors";
@@ -16,7 +16,8 @@ import {
   Training as TrainingType,
   TrainingProps,
   Circuit as CircuitType,
-  TrainingHeader as TrainingHeaderType
+  TrainingHeader as TrainingHeaderType,
+  CircuitResolvers
 } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
@@ -73,22 +74,34 @@ const TrainingContainer = styled.div({
   height: "100%"
 });
 
-const getContentFromTraining = (training: TrainingType): React.ReactNode => {
-  const editMode = training.edit;
+const getContentFromTraining = (
+  training: TrainingType,
+  edit: boolean,
+  circuitResolvers: CircuitResolvers
+): React.ReactNode => {
   const content = mapUncapped((circuit: CircuitType, circuitIndex: number) => {
     return (
       <Circuit
         key={`Circuit-${circuit.id}`}
         circuitIndex={circuitIndex}
         {...circuit}
-        edit={editMode}
-      ></Circuit>
+        edit={edit}
+        {...circuitResolvers}
+      />
     );
   }, get("plan", training));
   return content;
 };
 
-export const Training = (props: TrainingProps) => {
+export const Training = ({
+  training,
+  addCircuit,
+  addActivity,
+  removeActivity,
+  removeCircuit,
+  duplicateActivity,
+  state = "edit"
+}: TrainingProps) => {
   return (
     <div
       style={{
@@ -98,12 +111,14 @@ export const Training = (props: TrainingProps) => {
         flexDirection: "column"
       }}
     >
-      <TrainingHeader
-        addCircuit={props.addCircuit}
-        state={getOr("edit", "state", props)}
-      />
+      <TrainingHeader addCircuit={addCircuit} state={state} />
       <TrainingContainer>
-        {getContentFromTraining(props.training)}
+        {getContentFromTraining(training, state === "edit" ? true : false, {
+          addActivity,
+          removeActivity,
+          removeCircuit,
+          duplicateActivity
+        })}
       </TrainingContainer>
     </div>
   );
