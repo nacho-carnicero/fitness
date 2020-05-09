@@ -112,3 +112,34 @@ export const WithContent = () => (
     </Window>
   </DragDropContext>
 );
+
+export const WithContentExecuting = () => (
+  <DragDropContext onDragEnd={() => {}}>
+    <Window>
+      <Training
+        training={training}
+        state={"executing"}
+        addCircuit={() => {}}
+        removeCircuit={() => {}}
+        removeActivity={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+      />
+    </Window>
+  </DragDropContext>
+);
+export const WithContentPaused = () => (
+  <DragDropContext onDragEnd={() => {}}>
+    <Window>
+      <Training
+        training={training}
+        state={"paused"}
+        addCircuit={() => {}}
+        removeCircuit={() => {}}
+        removeActivity={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+      />
+    </Window>
+  </DragDropContext>
+);
