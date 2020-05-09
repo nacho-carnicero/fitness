@@ -9,14 +9,19 @@ import {
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
-import { ActivityProps } from "../../types";
+import {
+  Circuit as CircuitType,
+  ActivityProps,
+  CircuitResolvers
+} from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
 
-export type CircuitProps = {
-  plan: ActivityProps[];
-  circuitIndex: number;
-};
+export type CircuitProps = CircuitType &
+  CircuitResolvers & {
+    circuitIndex: number;
+    edit: boolean;
+  };
 
 const Separator = styled.div(`
   width:100%;
@@ -24,13 +29,25 @@ const Separator = styled.div(`
   background-color: ${defaultShadowColor}
 `);
 
-export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
+export const Circuit = ({
+  plan,
+  circuitIndex,
+  id,
+  edit,
+  addActivity,
+  removeCircuit,
+  duplicateActivity,
+  removeActivity
+}: CircuitProps) => {
   const items = mapUncapped(
     (elementPlan: ActivityProps, index: number) => (
       <Activity
         style={{ margin: 5 }}
         {...elementPlan}
         key={`circuit${circuitIndex}-activity${index}`}
+        edit={edit}
+        duplicateActivity={duplicateActivity}
+        removeActivity={removeActivity}
       />
     ),
     plan
@@ -72,7 +89,11 @@ export const Circuit = ({ plan, circuitIndex }: CircuitProps) => {
         <PopList
           anchorOrigin={{ vertical: "center", horizontal: "center" }}
           transformOrigin={{ vertical: "top", horizontal: "right" }}
-          options={["Edit", "Remove", "Duplicate"]}
+          options={["Remove", "Add"]}
+          optionsCall={[
+            () => removeCircuit({ variables: { id } }),
+            () => addActivity({ variables: { id } })
+          ]}
         />
       </div>
       <Separator />

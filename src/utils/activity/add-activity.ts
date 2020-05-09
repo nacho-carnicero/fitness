@@ -4,8 +4,9 @@ import { Training, ActivityInputToAddActivity, Circuit } from "../../types";
 
 const defaultEmptyActivity = {
   type: "activity",
-  exercise: { name: "New exercise" },
-  time: 0
+  exercise: { name: "New exercise", __typename: "Exercise" },
+  time: 0,
+  __typename: "Activity"
 };
 
 /**

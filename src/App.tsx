@@ -17,11 +17,19 @@ const trainingQuery = gql`
       id
       type
       name
+      edit
       plan {
         id
         type
         name
-        plan
+        plan {
+          id
+          type
+          time
+          exercise {
+            name
+          }
+        }
       }
     }
   }
@@ -33,14 +41,50 @@ const addCircuitQuery = gql`
   }
 `;
 
+const removeCircuitQuery = gql`
+  mutation($id: ID) {
+    removeCircuit(id: $id) @client
+  }
+`;
+
+const addActivityQuery = gql`
+  mutation($id: ID) {
+    addActivity(id: $id) @client
+  }
+`;
+
+const removeActivityQuery = gql`
+  mutation($id: ID) {
+    removeActivity(id: $id) @client
+  }
+`;
+
+const duplicateActivityQuery = gql`
+  mutation($id: ID) {
+    duplicateActivity(id: $id) @client
+  }
+`;
+
 function App() {
   const trainingQueryResponse = useQuery(trainingQuery);
-  const [addCircuit] = useMutation(addCircuitQuery);
   const training = get("data.training", trainingQueryResponse);
+  const [addCircuit] = useMutation(addCircuitQuery);
+  const [removeCircuit] = useMutation(removeCircuitQuery);
+  const [addActivity] = useMutation(addActivityQuery);
+  const [removeActivity] = useMutation(removeActivityQuery);
+  const [duplicateActivity] = useMutation(duplicateActivityQuery);
+
   return (
     <DragDropContext onDragEnd={() => {}}>
       <Window>
-        <Training training={training} addCircuit={addCircuit} />
+        <Training
+          training={training}
+          addCircuit={addCircuit}
+          removeCircuit={removeCircuit}
+          addActivity={addActivity}
+          removeActivity={removeActivity}
+          duplicateActivity={duplicateActivity}
+        />
       </Window>
     </DragDropContext>
   );

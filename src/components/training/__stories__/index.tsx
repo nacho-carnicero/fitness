@@ -14,9 +14,16 @@ const Window = styled.div`
 `;
 
 export const Basic = () => (
-  <DragDropContext onDragEnd={() => { }}>
+  <DragDropContext onDragEnd={() => {}}>
     <Window>
-      <Training training={null} addCircuit={() => { }} />
+      <Training
+        training={null}
+        addCircuit={() => {}}
+        removeCircuit={() => {}}
+        removeActivity={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+      />
     </Window>
   </DragDropContext>
 );
@@ -25,6 +32,7 @@ const training = {
   id: "coiasboiasbdobsai",
   type: "high-intensity-interval-training",
   name: "Example training",
+  edit: true,
   plan: [
     {
       id: "coiasbcoibsaoib",
@@ -91,9 +99,47 @@ const training = {
 };
 
 export const WithContent = () => (
-  <DragDropContext onDragEnd={() => { }}>
+  <DragDropContext onDragEnd={() => {}}>
     <Window>
-      <Training training={training} addCircuit={() => { }} />
+      <Training
+        training={training}
+        addCircuit={() => {}}
+        removeCircuit={() => {}}
+        removeActivity={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+      />
+    </Window>
+  </DragDropContext>
+);
+
+export const WithContentExecuting = () => (
+  <DragDropContext onDragEnd={() => {}}>
+    <Window>
+      <Training
+        training={training}
+        state={"executing"}
+        addCircuit={() => {}}
+        removeCircuit={() => {}}
+        removeActivity={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+      />
+    </Window>
+  </DragDropContext>
+);
+export const WithContentPaused = () => (
+  <DragDropContext onDragEnd={() => {}}>
+    <Window>
+      <Training
+        training={training}
+        state={"paused"}
+        addCircuit={() => {}}
+        removeCircuit={() => {}}
+        removeActivity={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+      />
     </Window>
   </DragDropContext>
 );

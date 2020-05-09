@@ -27,7 +27,8 @@ test("Add activity to empty circuit works", () => {
             id: "ck9orwp460000oorse5h330it",
             type: "activity",
             exercise: { name: "Squat" },
-            time: 10
+            time: 10,
+            __typename: "Activity"
           }
         ]
       }
@@ -79,7 +80,8 @@ test("Add activity to non-empty circuit works", () => {
             id: "ck9orwp460000oorse5h330it",
             type: "activity",
             exercise: { name: "Mountain climbers" },
-            time: 15
+            time: 15,
+            __typename: "Activity"
           }
         ],
         id: "ck9orwp460000oorse5h330jh"
@@ -104,8 +106,9 @@ test("Add activity without setting input activity adds new default activity", ()
           {
             id: "ck9orwp460000oorse5h330it",
             type: "activity",
-            exercise: { name: "New exercise" },
-            time: 0
+            exercise: { name: "New exercise", __typename: "Exercise" },
+            time: 0,
+            __typename: "Activity"
           }
         ],
         id: "ck9orwp460000oorse5h330gf"

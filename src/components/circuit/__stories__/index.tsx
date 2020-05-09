@@ -4,19 +4,29 @@ import styled from "@emotion/styled";
 import { Circuit } from "../";
 
 export default {
-  title: "Circuit",
-  component: Circuit
+  title: "Circuit"
 };
 
 const Window = styled.div`
   width: ${window.outerWidth}px;
   height: ${window.outerHeight}px;
 `;
+const id = "coiansdoisanodinasid";
+const type = "circuit";
 
 export const NoActivity = () => (
   <DragDropContext onDragEnd={() => {}}>
     <Window>
-      <Circuit circuitIndex={0} plan={[]} />
+      <Circuit
+        edit={true}
+        circuitIndex={0}
+        plan={[]}
+        {...{ id, type }}
+        removeCircuit={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+        removeActivity={() => {}}
+      />
     </Window>
   </DragDropContext>
 );
@@ -25,7 +35,12 @@ export const WithActivities = () => (
   <DragDropContext onDragEnd={() => {}}>
     <Window>
       <Circuit
+        edit={false}
         circuitIndex={0}
+        removeCircuit={() => {}}
+        addActivity={() => {}}
+        duplicateActivity={() => {}}
+        removeActivity={() => {}}
         plan={[
           {
             id: "ca",
@@ -54,6 +69,7 @@ export const WithActivities = () => (
             time: 15
           }
         ]}
+        {...{ id, type }}
       />
     </Window>
   </DragDropContext>

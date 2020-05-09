@@ -9,6 +9,7 @@ const initialState: { training: Training & { __typename: string } } = {
     type: "training",
     plan: [],
     name: "New training",
+    edit: true,
     __typename: "Training"
   }
 };
