@@ -1,19 +1,6 @@
-import cuid from "cuid";
 import gql from "graphql-tag";
 import { get } from "lodash/fp";
-import { Training } from "../../../types";
 import { removeCircuit, addActivity } from "../../../utils";
-
-const initialState: { training: Training & { __typename: string } } = {
-  training: {
-    id: cuid(),
-    type: "training",
-    plan: [],
-    name: "New training",
-    edit: true,
-    __typename: "Training"
-  }
-};
 
 const resolvers = {
   Mutation: {
@@ -68,4 +55,4 @@ const resolvers = {
   }
 };
 
-export default { initialState, resolvers };
+export default { resolvers };
