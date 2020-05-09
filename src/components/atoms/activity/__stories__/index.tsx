@@ -1,9 +1,9 @@
 import React from "react";
-import { Activity } from "../";
+import { EditActivity } from "../edit-activity";
+import { DisplayActivity } from "../display-activity";
 
 export default {
-  title: "Activity",
-  component: Activity
+  title: "Activity"
 };
 
 const activity = {
@@ -13,11 +13,18 @@ const activity = {
   time: 30
 };
 
-export const Basic = () => <Activity edit={false} {...activity} />;
-export const Editing = () => <Activity edit {...activity} />;
+export const Basic = () => <DisplayActivity edit={false} {...activity} />;
+export const Editing = () => (
+  <EditActivity
+    edit
+    {...activity}
+    removeActivity={() => {}}
+    duplicateActivity={() => {}}
+  />
+);
 export const Executing = () => (
-  <Activity edit={false} {...{ ...activity, status: "executing" }} />
+  <DisplayActivity edit={false} {...{ ...activity, status: "executing" }} />
 );
 export const Finished = () => (
-  <Activity edit={false} {...{ ...activity, status: "finished" }} />
+  <DisplayActivity edit={false} {...{ ...activity, status: "finished" }} />
 );
