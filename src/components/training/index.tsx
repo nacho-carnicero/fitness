@@ -14,16 +14,12 @@ import {
 } from "../../style/layout";
 import {
   Training as TrainingType,
+  TrainingProps,
   Circuit as CircuitType,
   TrainingHeader as TrainingHeaderType
 } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
-
-type Props = {
-  training: TrainingType | null;
-  addCircuit: () => void;
-};
 
 const TrainingHeader = ({ addCircuit, state }: TrainingHeaderType) => (
   <div
@@ -92,7 +88,7 @@ const getContentFromTraining = (training: TrainingType): React.ReactNode => {
   return content;
 };
 
-export const Training = (props: Props) => {
+export const Training = (props: TrainingProps) => {
   return (
     <div
       style={{

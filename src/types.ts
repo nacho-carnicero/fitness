@@ -67,11 +67,20 @@ export type PopList = {
   closure?: Function;
 };
 
+export type TrainingControls = {
+  state: String;
+};
+
 export type TrainingHeader = {
   addCircuit: () => void;
   state: String;
 };
 
-export type TrainingControls = {
-  state: String;
+export type TrainingProps = {
+  training: Training | null;
+  addCircuit: () => void;
+  removeCircuit: () => void;
+  addActivity: () => void;
+  removeActivity: () => void;
+  duplicateActivity: () => void;
 };
