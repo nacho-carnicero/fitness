@@ -37,7 +37,8 @@ export const Circuit = ({
   addActivity,
   removeCircuit,
   duplicateActivity,
-  removeActivity
+  removeActivity,
+  editActivity
 }: CircuitProps) => {
   const items = mapUncapped(
     (elementPlan: ActivityProps, index: number) => (
@@ -48,6 +49,7 @@ export const Circuit = ({
         edit={edit}
         duplicateActivity={duplicateActivity}
         removeActivity={removeActivity}
+        editActivity={editActivity}
       />
     ),
     plan

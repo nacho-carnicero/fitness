@@ -65,6 +65,12 @@ const duplicateActivityQuery = gql`
   }
 `;
 
+const editActivityQuery = gql`
+  mutation($id: ID, $newParameters: Json) {
+    editActivity(id: $id, newParameters: $newParameters) @client
+  }
+`;
+
 function App() {
   const trainingQueryResponse = useQuery(trainingQuery);
   const training = get("data.training", trainingQueryResponse);
@@ -73,6 +79,7 @@ function App() {
   const [addActivity] = useMutation(addActivityQuery);
   const [removeActivity] = useMutation(removeActivityQuery);
   const [duplicateActivity] = useMutation(duplicateActivityQuery);
+  const [editActivity] = useMutation(editActivityQuery);
 
   return (
     <DragDropContext onDragEnd={() => {}}>
@@ -84,6 +91,7 @@ function App() {
           addActivity={addActivity}
           removeActivity={removeActivity}
           duplicateActivity={duplicateActivity}
+          editActivity={editActivity}
         />
       </Window>
     </DragDropContext>

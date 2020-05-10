@@ -100,6 +100,7 @@ export const Training = ({
   removeActivity,
   removeCircuit,
   duplicateActivity,
+  editActivity,
   state = "edit"
 }: TrainingProps) => {
   return (
@@ -117,7 +118,8 @@ export const Training = ({
           addActivity,
           removeActivity,
           removeCircuit,
-          duplicateActivity
+          duplicateActivity,
+          editActivity
         })}
       </TrainingContainer>
     </div>

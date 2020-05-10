@@ -28,6 +28,7 @@ export type ActivityProps = Activity & {
   edit: boolean;
   removeActivity: (options?: { variables: any }) => void;
   duplicateActivity: (options?: { variables: any }) => void;
+  editActivity: (options?: { variables: any }) => void;
 };
 
 export type Circuit = {
@@ -43,6 +44,7 @@ export type CircuitResolvers = {
   removeCircuit: (options?: { variables: any }) => void;
   duplicateActivity: (options?: { variables: any }) => void;
   removeActivity: (options?: { variables: any }) => void;
+  editActivity: (options?: { variables: any }) => void;
 };
 
 export type CircuitInputToAddCircuit = {
@@ -95,5 +97,6 @@ export type TrainingProps = {
   addActivity: () => void;
   removeActivity: () => void;
   duplicateActivity: () => void;
+  editActivity: () => void;
   state?: string;
 };

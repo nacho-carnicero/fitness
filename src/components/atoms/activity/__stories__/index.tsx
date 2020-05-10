@@ -18,6 +18,7 @@ export const Basic = () => (
     {...activity}
     removeActivity={() => {}}
     duplicateActivity={() => {}}
+    editActivity={() => {}}
   />
 );
 export const Editing = () => (
@@ -26,6 +27,7 @@ export const Editing = () => (
     {...activity}
     removeActivity={() => {}}
     duplicateActivity={() => {}}
+    editActivity={() => {}}
   />
 );
 export const Executing = () => (
@@ -34,6 +36,7 @@ export const Executing = () => (
     {...{ ...activity, status: "executing" }}
     removeActivity={() => {}}
     duplicateActivity={() => {}}
+    editActivity={() => {}}
   />
 );
 export const Finished = () => (
@@ -42,5 +45,6 @@ export const Finished = () => (
     {...{ ...activity, status: "finished" }}
     removeActivity={() => {}}
     duplicateActivity={() => {}}
+    editActivity={() => {}}
   />
 );

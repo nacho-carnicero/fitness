@@ -23,6 +23,7 @@ export const Basic = () => (
         removeActivity={() => {}}
         addActivity={() => {}}
         duplicateActivity={() => {}}
+        editActivity={() => {}}
       />
     </Window>
   </DragDropContext>
@@ -108,6 +109,7 @@ export const WithContent = () => (
         removeActivity={() => {}}
         addActivity={() => {}}
         duplicateActivity={() => {}}
+        editActivity={() => {}}
       />
     </Window>
   </DragDropContext>
@@ -124,6 +126,7 @@ export const WithContentExecuting = () => (
         removeActivity={() => {}}
         addActivity={() => {}}
         duplicateActivity={() => {}}
+        editActivity={() => {}}
       />
     </Window>
   </DragDropContext>
@@ -139,6 +142,7 @@ export const WithContentPaused = () => (
         removeActivity={() => {}}
         addActivity={() => {}}
         duplicateActivity={() => {}}
+        editActivity={() => {}}
       />
     </Window>
   </DragDropContext>
