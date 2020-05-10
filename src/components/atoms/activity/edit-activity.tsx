@@ -81,7 +81,7 @@ export const EditActivity = ({
           fontSize: 15,
           color: "#AAAAAA"
         }}
-        value={`${time} s`}
+        value={`${time}`}
         changeParameter={value =>
           editActivity({ variables: { id, newParameters: { time: value } } })
         }

@@ -79,7 +79,7 @@ export const DisplayActivity = ({
           color: "#AAAAAA"
         }}
       >
-        {`${time} s`}
+        {`${time}`}
       </Text>
       {status !== "planned" && (
         <LinearProgress
