@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TextInput, TextInputProps } from "../text-input";
 
 type Props = TextInputProps & {
   changeParameter: (value?: unknown) => void;
 };
 
-export const EditText = ({ value, changeParameter }: Props) => {
+export const EditText = ({ value, changeParameter, ...props }: Props) => {
   const [textValue, setTextValue] = useState(value);
   return (
     <TextInput
@@ -15,6 +15,7 @@ export const EditText = ({ value, changeParameter }: Props) => {
         changeParameter(textValue);
         setTextValue(value);
       }}
+      {...props}
     />
   );
 };
