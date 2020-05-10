@@ -19,7 +19,7 @@ export const TextInput = (props: TextInputProps) => {
           padding: 0
         }
       }}
-      {...props}
+      {...{ ...props, bold: undefined }}
     />
   );
 };
