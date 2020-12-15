@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { PopList } from "../popover";
-import { TextInput } from "../text-input";
+import { EditText } from "../edit-text";
 import { ActivityProps } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
@@ -18,7 +18,8 @@ export const EditActivity = ({
   status = "planned",
   id,
   removeActivity,
-  duplicateActivity
+  duplicateActivity,
+  editActivity
 }: EditActivityProps) => {
   const ActivityContainer = styled.div(props => ({
     width: 300,
@@ -43,13 +44,21 @@ export const EditActivity = ({
           margin: 10
         }}
       >
-        <TextInput
+        <EditText
           style={{
             fontSize: 20
           }}
           bold
           value={exercise.name}
-        ></TextInput>
+          changeParameter={value =>
+            editActivity({
+              variables: {
+                id,
+                newParameters: { exercise: { ...exercise, name: value } }
+              }
+            })
+          }
+        ></EditText>
         <PopList
           anchorOrigin={{
             vertical: "center",
@@ -66,14 +75,17 @@ export const EditActivity = ({
           ]}
         />
       </div>
-      <TextInput
+      <EditText
         style={{
           padding: 10,
           fontSize: 15,
           color: "#AAAAAA"
         }}
-        value={`${time} s`}
-      ></TextInput>
+        value={`${time}`}
+        changeParameter={value =>
+          editActivity({ variables: { id, newParameters: { time: value } } })
+        }
+      ></EditText>
     </ActivityContainer>
   );
 };

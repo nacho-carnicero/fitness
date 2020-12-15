@@ -2,7 +2,7 @@ import React from "react";
 import { isNil } from "lodash/fp";
 import { TextField, TextFieldProps } from "@material-ui/core";
 
-type TextInputProps = TextFieldProps & { bold?: boolean };
+export type TextInputProps = TextFieldProps & { bold?: boolean };
 const defaultStyle = { fontFamily: "Arial" };
 
 export const TextInput = (props: TextInputProps) => {
@@ -19,7 +19,7 @@ export const TextInput = (props: TextInputProps) => {
           padding: 0
         }
       }}
-      {...props}
+      {...{ ...props, bold: undefined }}
     />
   );
 };

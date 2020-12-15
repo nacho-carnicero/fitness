@@ -26,6 +26,7 @@ export const NoActivity = () => (
         addActivity={() => {}}
         duplicateActivity={() => {}}
         removeActivity={() => {}}
+        editActivity={() => {}}
       />
     </Window>
   </DragDropContext>
@@ -41,6 +42,7 @@ export const WithActivities = () => (
         addActivity={() => {}}
         duplicateActivity={() => {}}
         removeActivity={() => {}}
+        editActivity={() => {}}
         plan={[
           {
             id: "ca",
