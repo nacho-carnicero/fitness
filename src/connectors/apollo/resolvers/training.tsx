@@ -22,18 +22,58 @@ const resolvers = {
           training @client {
             id
             type
+            name
+            edit
             plan {
               id
               type
               name
-              plan
+              plan {
+                id
+                type
+                time
+                exercise {
+                  name
+                }
+              }
             }
-            name
           }
         }
       `;
       const { training } = cache.readQuery({ query });
       const newTraining = addCircuit(training);
+      const data = {
+        training: newTraining
+      };
+      cache.writeData({ data });
+      return null;
+    },
+    resetTraining: (_, variables, { cache }) => {
+      const query = gql`
+        {
+          training @client {
+            id
+            type
+            name
+            edit
+            plan {
+              id
+              type
+              name
+              plan {
+                id
+                type
+                time
+                exercise {
+                  name
+                }
+              }
+            }
+          }
+        }
+      `;
+      const { training } = cache.readQuery({ query });
+      const newTraining = { ...training, plan: [] };
       const data = {
         training: newTraining
       };

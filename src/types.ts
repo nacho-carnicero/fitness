@@ -87,12 +87,14 @@ export type TrainingControls = {
 
 export type TrainingHeader = {
   addCircuit: () => void;
+  resetTraining: () => void;
   state: string;
 };
 
 export type TrainingProps = {
   training: Training | null;
   addCircuit: () => void;
+  resetTraining: () => void;
   removeCircuit: () => void;
   addActivity: () => void;
   removeActivity: () => void;
