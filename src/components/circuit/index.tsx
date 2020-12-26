@@ -10,9 +10,7 @@ import {
   headerHeight
 } from "../../style/layout";
 import {
-  Circuit as CircuitType,
   ActivityProps,
-  CircuitResolvers,
   CircuitProps
 } from "../../types";
 

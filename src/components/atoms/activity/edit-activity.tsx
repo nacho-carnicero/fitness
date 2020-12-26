@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import { PopList } from "../popover";
 import { EditText } from "../edit-text";
-import { EditActivityProps } from "../../../types";
+import { ActivityProps } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
 
@@ -15,7 +15,7 @@ export const EditActivity = ({
   removeActivity,
   duplicateActivity,
   editActivity
-}: EditActivityProps) => {
+}: ActivityProps) => {
   const ActivityContainer = styled.div(props => ({
     width: 300,
     height: 100,

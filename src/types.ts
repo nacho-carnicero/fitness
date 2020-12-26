@@ -27,8 +27,6 @@ export type ActivityProps = Activity & {
   editActivity: (options?: { variables: any }) => void;
 };
 
-export type EditActivityProps = Omit<ActivityProps, "editActivity">
-
 // CIRCUIT TYPES
 
 export type Circuit = {
