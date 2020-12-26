@@ -1,13 +1,24 @@
 import React from "react";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faStop } from "@fortawesome/free-solid-svg-icons";
 
 import { TrainingControls as TrainingControlsType } from "../../../types";
 
+
+const setStateQuery = gql`
+  mutation($state: string) {
+    setState(state: $state) @client
+  }
+`;
+
 export const TrainingControls = ({ state }: TrainingControlsType) => {
   // TYPESCRIPT FORMAT NEEDED ?
-  const IconButton = ({ icon, color }) => (
+  const [setState] = useMutation(setStateQuery);
+
+  const IconButton = ({ icon, color, newState }) => (
     <div
       style={{
         padding: 5
@@ -20,7 +31,7 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
           borderRadius: 5
         }}
         onClick={() => {
-          console.log("click");
+          setState({ variables: { state: newState } })
         }}
       >
         <FontAwesomeIcon icon={icon} color={color} />
@@ -38,11 +49,11 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
       }}
     >
       {(state === "edit" || state === "paused") && (
-        <IconButton icon={faPlay} color="green" />
+        <IconButton icon={faPlay} color="green" newState="executing" />
       )}
-      {state === "executing" && <IconButton icon={faPause} color="gray" />}
+      {state === "executing" && <IconButton icon={faPause} color="gray" newState="pause" />}
       {(state === "executing" || state === "paused") && (
-        <IconButton icon={faStop} color="red" />
+        <IconButton icon={faStop} color="red" newState="edit" />
       )}
     </div>
   );

@@ -61,6 +61,7 @@ export type Training = {
   plan: Circuit[];
   edit: boolean;
   name?: string;
+  state?: string;
 };
 
 export type AddCircuit = (

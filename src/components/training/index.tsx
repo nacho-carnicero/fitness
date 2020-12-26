@@ -103,6 +103,7 @@ export const Training = ({
   editActivity,
   state = "edit"
 }: TrainingProps) => {
+  console.log(training)
   return (
     <div
       style={{

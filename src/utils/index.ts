@@ -5,4 +5,4 @@ export {
   editActivity
 } from "./activity";
 export { addCircuit, removeCircuit, renameCircuit } from "./circuit";
-export { renameTraining } from "./training";
+export { renameTraining, setState } from "./training";
