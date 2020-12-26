@@ -30,10 +30,8 @@ export const DisplayActivity = ({
 
   useEffect(() => {
     function progress(timeRef) {
-      setCompleted(() => {
-        const diff = (Date.now() - timeRef) / 1 / time; // CHANGE 1 FOR 10 FOR REAL TIME
-        return Math.min(diff, 100);
-      });
+      const diff = (Date.now() - timeRef) / 10 / time;
+      setCompleted(Math.min(diff, 100));
     }
 
     if (status === "executing" && completed === 0) {
@@ -42,14 +40,15 @@ export const DisplayActivity = ({
       setTimerID(timer);
 
       return () => {
-        clearInterval(timer);
+        // Every time u change state, the component unmounts
+        // clearInterval(timer);  
       };
     }
   }, [status, time, completed]);
 
   if (completed === 100) {
-    // CHANGE STATUS ////////////////////////////////////////////
     clearInterval(timerID);
+    status = "finished"
   }
 
   return (
