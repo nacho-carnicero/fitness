@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faStop } from "@fortawesome/free-solid-svg-icons";
 
-import { TrainingControls as TrainingControlsType } from "../../../types";
+import { TrainingControls as TrainingControlsType, StateTypes } from "../../../types";
 
 
 const setStateQuery = gql`
@@ -48,12 +48,12 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
         flexDirection: "row"
       }}
     >
-      {(state === "edit" || state === "paused") && (
-        <IconButton icon={faPlay} color="green" newState="executing" />
+      {(state === StateTypes.edit || state === StateTypes.paused) && (
+        <IconButton icon={faPlay} color="green" newState={StateTypes.executing} />
       )}
-      {state === "executing" && <IconButton icon={faPause} color="gray" newState="pause" />}
-      {(state === "executing" || state === "paused") && (
-        <IconButton icon={faStop} color="red" newState="edit" />
+      {state === StateTypes.executing && <IconButton icon={faPause} color="gray" newState={StateTypes.paused} />}
+      {(state === StateTypes.executing || state === StateTypes.paused) && (
+        <IconButton icon={faStop} color="red" newState={StateTypes.edit} />
       )}
     </div>
   );

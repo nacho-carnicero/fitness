@@ -61,7 +61,6 @@ export type Training = {
   plan: Circuit[];
   edit: boolean;
   name?: string;
-  state?: string;
 };
 
 export type AddCircuit = (
@@ -101,3 +100,9 @@ export type TrainingProps = {
   editActivity: () => void;
   state?: string;
 };
+
+export enum StateTypes {
+  edit = "edit",
+  paused = "paused",
+  executing = "executing"
+}

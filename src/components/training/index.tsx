@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { map, get } from "lodash/fp";
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+import { map, get, getOr } from "lodash/fp";
 import { Circuit } from "../circuit";
 import { PopList } from "../atoms/popover";
 import { neutralColor } from "../../style/colors";
@@ -17,7 +19,8 @@ import {
   TrainingProps,
   Circuit as CircuitType,
   TrainingHeader as TrainingHeaderType,
-  CircuitResolvers
+  CircuitResolvers,
+  StateTypes
 } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
@@ -93,6 +96,12 @@ const getContentFromTraining = (
   return content;
 };
 
+const stateQuery = gql`
+  {
+    state @client 
+  }
+`;
+
 export const Training = ({
   training,
   addCircuit,
@@ -101,9 +110,10 @@ export const Training = ({
   removeCircuit,
   duplicateActivity,
   editActivity,
-  state = "edit"
 }: TrainingProps) => {
-  console.log(training)
+  const stateQueryResponse = useQuery(stateQuery);
+  const state = getOr(StateTypes.edit, "data.state", stateQueryResponse);
+
   return (
     <div
       style={{
