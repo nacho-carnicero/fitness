@@ -2,14 +2,9 @@ import React from "react";
 import styled from "@emotion/styled";
 import { PopList } from "../popover";
 import { EditText } from "../edit-text";
-import { ActivityProps } from "../../../types";
+import { EditActivityProps } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
-
-type EditActivityProps = ActivityProps & {
-  removeActivity: (options?: { variables: any }) => void;
-  duplicateActivity: (options?: { variables: any }) => void;
-};
 
 export const EditActivity = ({
   exercise,

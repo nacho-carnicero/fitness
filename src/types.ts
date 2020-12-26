@@ -1,3 +1,5 @@
+import { TextFieldProps } from "@material-ui/core";
+
 export type Exercise = { name: string };
 
 export type Activity = {
@@ -31,6 +33,11 @@ export type ActivityProps = Activity & {
   editActivity: (options?: { variables: any }) => void;
 };
 
+export type EditActivityProps = ActivityProps & {
+  removeActivity: (options?: { variables: any }) => void;
+  duplicateActivity: (options?: { variables: any }) => void;
+};
+
 export type Circuit = {
   id: string;
   type: string;
@@ -54,6 +61,12 @@ export type CircuitInputToAddCircuit = {
   name?: string | null;
   __typename?: string;
 };
+
+export type CircuitProps = Circuit &
+  CircuitResolvers & {
+    circuitIndex: number;
+    edit: boolean;
+  };
 
 export type Training = {
   id: string;
@@ -99,4 +112,16 @@ export type TrainingProps = {
   duplicateActivity: () => void;
   editActivity: () => void;
   state?: string;
+};
+
+export type TextProps = {
+  bold?: boolean;
+  color?: string;
+  style?: any
+};
+
+export type TextInputProps = TextFieldProps & { bold?: boolean };
+
+export type EditTextInputProps = TextInputProps & {
+  changeParameter: (value?: unknown) => void;
 };
