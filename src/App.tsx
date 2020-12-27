@@ -105,7 +105,6 @@ function App() {
   return (
     <DragDropContext
       onDragEnd={result => {
-        console.log("Drag ended with input", result);
         reorderTraining(result, training, writeTraining);
       }}
     >
