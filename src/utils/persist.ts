@@ -10,14 +10,12 @@ export const persistTraining = throttle(
   1000,
   async (training: Training, storage): Promise<void> => {
     const trainingString = JSON.stringify(training);
-    console.log("Will persist", trainingString);
     return storage.setItem(trainingKeyInStorage, trainingString);
   }
 );
 
 export const hydrateTraining = async (): Promise<null | Training> => {
   const trainingString = await localStorage.getItem(trainingKeyInStorage);
-  console.log("Got this from local storage", trainingString);
   if (!isNil(trainingString)) {
     const training = JSON.parse(trainingString);
     return training;
