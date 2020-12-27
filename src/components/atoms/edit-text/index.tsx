@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { TextInput, TextInputProps } from "../text-input";
+import { TextInput } from "../text-input";
+import { EditTextInputProps } from "../../../types"
 
-type Props = TextInputProps & {
-  changeParameter: (value?: unknown) => void;
-};
-
-export const EditText = ({ value, changeParameter, ...props }: Props) => {
+export const EditText = ({ value, changeParameter, ...props }: EditTextInputProps) => {
   const [textValue, setTextValue] = useState(value);
   return (
     <TextInput

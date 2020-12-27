@@ -10,18 +10,11 @@ import {
   headerHeight
 } from "../../style/layout";
 import {
-  Circuit as CircuitType,
   ActivityProps,
-  CircuitResolvers
+  CircuitProps
 } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
-
-export type CircuitProps = CircuitType &
-  CircuitResolvers & {
-    circuitIndex: number;
-    edit: boolean;
-  };
 
 const Separator = styled.div(`
   width:100%;

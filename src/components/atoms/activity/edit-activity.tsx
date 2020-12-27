@@ -6,11 +6,6 @@ import { ActivityProps } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
 
-type EditActivityProps = ActivityProps & {
-  removeActivity: (options?: { variables: any }) => void;
-  duplicateActivity: (options?: { variables: any }) => void;
-};
-
 export const EditActivity = ({
   exercise,
   time,
@@ -20,7 +15,7 @@ export const EditActivity = ({
   removeActivity,
   duplicateActivity,
   editActivity
-}: EditActivityProps) => {
+}: ActivityProps) => {
   const ActivityContainer = styled.div(props => ({
     width: 300,
     height: 100,
