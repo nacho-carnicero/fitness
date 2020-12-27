@@ -1,6 +1,6 @@
 import { filter, map, isNil } from "lodash/fp";
 import { DropResult, Training } from "../../types";
-import { persistTraining, withPersist } from "../persist";
+import { persistTraining } from "../persist";
 
 export const reorderTraining = (
   event: DropResult,
