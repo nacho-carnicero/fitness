@@ -6,6 +6,7 @@ import { get, isNil } from "lodash/fp";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Training } from "./components/training";
 import { hydrateTraining } from "./utils/persist";
+import { reorderTraining } from "./utils/training/reorder-training";
 
 const Window = styled.div`
   width: ${window.innerWidth}px;
@@ -103,8 +104,9 @@ function App() {
 
   return (
     <DragDropContext
-      onDragEnd={(...input) => {
-        console.log("Drag ended with input", input);
+      onDragEnd={result => {
+        console.log("Drag ended with input", result);
+        reorderTraining(result, training, writeTraining);
       }}
     >
       <Window>
