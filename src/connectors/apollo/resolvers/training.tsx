@@ -39,6 +39,12 @@ const resolvers = {
       };
       cache.writeData({ data });
       return null;
+    },
+    writeTraining: (_, variables, { cache }) => {
+      const training = variables?.training;
+      console.log("Traininfg is", training, variables);
+      cache.writeData({ data: { training } });
+      return null;
     }
   }
 };

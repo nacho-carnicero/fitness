@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { get } from "lodash/fp";
+import { get, isNil } from "lodash/fp";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Training } from "./components/training";
+import { hydrateTraining } from "./utils/persist";
 
 const Window = styled.div`
   width: ${window.innerWidth}px;
@@ -71,6 +72,20 @@ const editActivityQuery = gql`
   }
 `;
 
+const writeTrainingQuery = gql`
+  mutation($training: Json) {
+    writeTraining(training: $training) @client
+  }
+`;
+
+const getTrainingFromStorage = async writeTraining => {
+  const training = await hydrateTraining();
+
+  if (!isNil(training)) {
+    writeTraining({ variables: { training } });
+  }
+};
+
 function App() {
   const trainingQueryResponse = useQuery(trainingQuery);
   const training = get("data.training", trainingQueryResponse);
@@ -80,9 +95,18 @@ function App() {
   const [removeActivity] = useMutation(removeActivityQuery);
   const [duplicateActivity] = useMutation(duplicateActivityQuery);
   const [editActivity] = useMutation(editActivityQuery);
+  const [writeTraining] = useMutation(writeTrainingQuery);
+
+  useEffect(() => {
+    getTrainingFromStorage(writeTraining);
+  }, [writeTraining]);
 
   return (
-    <DragDropContext onDragEnd={() => {}}>
+    <DragDropContext
+      onDragEnd={(...input) => {
+        console.log("Drag ended with input", input);
+      }}
+    >
       <Window>
         <Training
           training={training}
