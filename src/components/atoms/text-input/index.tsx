@@ -1,8 +1,8 @@
 import React from "react";
 import { isNil } from "lodash/fp";
-import { TextField, TextFieldProps } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
+import { TextInputProps } from "../../../types"
 
-export type TextInputProps = TextFieldProps & { bold?: boolean };
 const defaultStyle = { fontFamily: "Arial" };
 
 export const TextInput = (props: TextInputProps) => {

@@ -1,4 +1,8 @@
+import { TextFieldProps } from "@material-ui/core";
+
 export type Exercise = { name: string };
+
+// ACTIVITY TYPES
 
 export type Activity = {
   id: string;
@@ -8,20 +12,12 @@ export type Activity = {
   status?: string;
 };
 
-export type ActivityInputToAddActivity = {
+export type ActivityInputToAddActivity = Omit<Activity, "id"> & {
   id?: string;
-  type: string;
-  exercise: Exercise;
-  time: number;
-  status?: string;
   style?: any;
 };
 
-export type ActivityParametersInputToEditActivity = {
-  exercise?: Exercise;
-  time?: number;
-  status?: string;
-};
+export type ActivityParametersInputToEditActivity = Partial<Exclude<Activity, "id" | "type">>
 
 export type ActivityProps = Activity & {
   style?: any;
@@ -31,12 +27,18 @@ export type ActivityProps = Activity & {
   editActivity: (options?: { variables: any }) => void;
 };
 
+// CIRCUIT TYPES
+
 export type Circuit = {
   id: string;
   type: string;
   plan: Activity[];
   name?: string | null;
   __typename?: string;
+};
+
+export type CircuitInputToAddCircuit = Omit<Circuit, "id"> & {
+  id?: string;
 };
 
 export type CircuitResolvers = {
@@ -47,13 +49,13 @@ export type CircuitResolvers = {
   editActivity: (options?: { variables: any }) => void;
 };
 
-export type CircuitInputToAddCircuit = {
-  id?: string;
-  type: string;
-  plan: Activity[];
-  name?: string | null;
-  __typename?: string;
-};
+export type CircuitProps = Circuit &
+  CircuitResolvers & {
+    circuitIndex: number;
+    edit: boolean;
+  };
+
+// TRAINING TYPES
 
 export type Training = {
   id: string;
@@ -63,10 +65,32 @@ export type Training = {
   name?: string;
 };
 
+export type TrainingProps = {
+  training: Training | null;
+  addCircuit: () => void;
+  removeCircuit: () => void;
+  addActivity: () => void;
+  removeActivity: () => void;
+  duplicateActivity: () => void;
+  editActivity: () => void;
+  state?: string;
+};
+
 export type AddCircuit = (
   previousTraining: Training,
   newCircuit?: CircuitInputToAddCircuit
 ) => Training;
+
+export type TrainingControls = {
+  state: string;
+};
+
+export type TrainingHeader = {
+  addCircuit: () => void;
+  state: string;
+};
+
+// OTHER TYPES
 
 export type Popover = {
   anchorOrigin: any;
@@ -81,22 +105,14 @@ export type PopList = {
   closure?: Function;
 };
 
-export type TrainingControls = {
-  state: string;
+export type TextProps = {
+  bold?: boolean;
+  color?: string;
+  style?: any
 };
 
-export type TrainingHeader = {
-  addCircuit: () => void;
-  state: string;
-};
+export type TextInputProps = TextFieldProps & { bold?: boolean };
 
-export type TrainingProps = {
-  training: Training | null;
-  addCircuit: () => void;
-  removeCircuit: () => void;
-  addActivity: () => void;
-  removeActivity: () => void;
-  duplicateActivity: () => void;
-  editActivity: () => void;
-  state?: string;
+export type EditTextInputProps = TextInputProps & {
+  changeParameter: (value?: unknown) => void;
 };
