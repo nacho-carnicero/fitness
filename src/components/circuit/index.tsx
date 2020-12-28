@@ -9,10 +9,7 @@ import {
   defaultBoxShadow,
   headerHeight
 } from "../../style/layout";
-import {
-  ActivityProps,
-  CircuitProps
-} from "../../types";
+import { ActivityProps, CircuitProps } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });
 
@@ -93,7 +90,7 @@ export const Circuit = ({
       </div>
       <Separator />
 
-      <DraggableList listId={`circuit${circuitIndex}`}>{items}</DraggableList>
+      <DraggableList listId={`circuit-${id}`}>{items}</DraggableList>
     </div>
   );
 };

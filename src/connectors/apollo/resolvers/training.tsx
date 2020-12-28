@@ -1,11 +1,10 @@
-import cuid from "cuid";
 import gql from "graphql-tag";
 import { Training } from "../../../types";
 import { addCircuit } from "../../../utils";
 
 const initialState: { training: Training & { __typename: string } } = {
   training: {
-    id: cuid(),
+    id: "training", // TODO: replace this by cuid once we implement the training selection by ID in the query
     type: "training",
     plan: [],
     name: "New training",
@@ -78,6 +77,11 @@ const resolvers = {
         training: newTraining
       };
       cache.writeData({ data });
+      return null;
+    },
+    writeTraining: (_, variables, { cache }) => {
+      const training = variables?.training;
+      cache.writeData({ data: { training } });
       return null;
     }
   }

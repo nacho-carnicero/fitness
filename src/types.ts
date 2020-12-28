@@ -1,4 +1,7 @@
 import { TextFieldProps } from "@material-ui/core";
+import { DropResult as DropResultF } from "react-beautiful-dnd";
+
+export type DropResult = DropResultF;
 
 export type Exercise = { name: string };
 
@@ -17,7 +20,9 @@ export type ActivityInputToAddActivity = Omit<Activity, "id"> & {
   style?: any;
 };
 
-export type ActivityParametersInputToEditActivity = Partial<Exclude<Activity, "id" | "type">>
+export type ActivityParametersInputToEditActivity = Partial<
+  Exclude<Activity, "id" | "type">
+>;
 
 export type ActivityProps = Activity & {
   style?: any;
@@ -92,7 +97,7 @@ export type PopList = {
 export type TextProps = {
   bold?: boolean;
   color?: string;
-  style?: any
+  style?: any;
 };
 
 export type TrainingHeader = {
