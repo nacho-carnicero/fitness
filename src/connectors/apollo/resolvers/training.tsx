@@ -55,19 +55,6 @@ const resolvers = {
             type
             name
             edit
-            plan {
-              id
-              type
-              name
-              plan {
-                id
-                type
-                time
-                exercise {
-                  name
-                }
-              }
-            }
           }
         }
       `;
