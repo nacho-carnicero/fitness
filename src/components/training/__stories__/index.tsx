@@ -87,13 +87,15 @@ const training = {
           id: "coisabndoisabno",
           type: "activity",
           exercise: { name: "Jumping jacks" },
-          time: 30
+          time: 30,
+          status: "planned"
         },
         {
           id: "cpoajsdpoapdn",
           type: "activity",
           exercise: { name: "Spider crawl" },
-          time: 45
+          time: 45,
+          status: "planned"
         }
       ]
     }

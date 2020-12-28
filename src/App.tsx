@@ -28,6 +28,7 @@ const trainingQuery = gql`
           id
           type
           time
+          status
           exercise {
             name
           }

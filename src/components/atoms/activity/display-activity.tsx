@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 import { Text } from "../text";
 import { ActivityProps } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
+const setNextActivityQuery = gql`
+  mutation {
+    setNextActivity @client
+  }
+`;
 
 export const DisplayActivity = ({
   exercise,
@@ -26,7 +33,9 @@ export const DisplayActivity = ({
   }));
 
   const [completed, setCompleted] = useState(status === "finished" ? 100 : 0);
+  const [isFinished, setFinished] = useState(false)
   const [timerID, setTimerID] = useState(0);
+  const [setNextActivity] = useMutation(setNextActivityQuery);
 
   useEffect(() => {
     function progress(timeRef) {
@@ -46,9 +55,10 @@ export const DisplayActivity = ({
     }
   }, [status, time, completed]);
 
-  if (completed === 100) {
+  if (completed === 100 && !isFinished) {
     clearInterval(timerID);
-    status = "finished"
+    setFinished(true)
+    setNextActivity()
   }
 
   return (

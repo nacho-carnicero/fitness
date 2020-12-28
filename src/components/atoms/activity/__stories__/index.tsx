@@ -15,36 +15,40 @@ const activity = {
 export const Basic = () => (
   <Activity
     edit={false}
+    status={"planned"}
     {...activity}
-    removeActivity={() => {}}
-    duplicateActivity={() => {}}
-    editActivity={() => {}}
+    removeActivity={() => { }}
+    duplicateActivity={() => { }}
+    editActivity={() => { }}
   />
 );
 export const Editing = () => (
   <Activity
     edit
+    status={"planned"}
     {...activity}
-    removeActivity={() => {}}
-    duplicateActivity={() => {}}
-    editActivity={() => {}}
+    removeActivity={() => { }}
+    duplicateActivity={() => { }}
+    editActivity={() => { }}
   />
 );
 export const Executing = () => (
   <Activity
     edit={false}
+    status={"planned"}
     {...{ ...activity, status: "executing" }}
-    removeActivity={() => {}}
-    duplicateActivity={() => {}}
-    editActivity={() => {}}
+    removeActivity={() => { }}
+    duplicateActivity={() => { }}
+    editActivity={() => { }}
   />
 );
 export const Finished = () => (
   <Activity
     edit={false}
+    status={"planned"}
     {...{ ...activity, status: "finished" }}
-    removeActivity={() => {}}
-    duplicateActivity={() => {}}
-    editActivity={() => {}}
+    removeActivity={() => { }}
+    duplicateActivity={() => { }}
+    editActivity={() => { }}
   />
 );

@@ -10,7 +10,10 @@ import {
   removeCircuit as removeCircuitWithoutPersist,
   renameCircuit as renameCircuitWithoutPersist
 } from "./circuit";
-import { renameTraining as renameTrainingWithoutPersist } from "./training";
+import {
+  renameTraining as renameTrainingWithoutPersist,
+  resetTraining as resetTrainingWithoutPersist
+} from "./training";
 
 // Add persistance to all actions
 const addActivity = withPersist(addActivityWithoutPersist);
@@ -23,6 +26,7 @@ const removeCircuit = withPersist(removeCircuitWithoutPersist);
 const renameCircuit = withPersist(renameCircuitWithoutPersist);
 
 const renameTraining = withPersist(renameTrainingWithoutPersist);
+const resetTraining = withPersist(resetTrainingWithoutPersist);
 
 export {
   addActivity,
@@ -32,5 +36,6 @@ export {
   addCircuit,
   removeCircuit,
   renameCircuit,
-  renameTraining
+  renameTraining,
+  resetTraining
 };

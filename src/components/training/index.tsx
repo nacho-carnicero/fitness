@@ -19,7 +19,7 @@ import {
   Circuit as CircuitType,
   TrainingHeader as TrainingHeaderType,
   CircuitResolvers,
-  StateTypes
+  StateTypes,
 } from "../../types";
 
 const mapUncapped = map.convert({ cap: false });

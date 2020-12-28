@@ -14,9 +14,16 @@ const setStateQuery = gql`
   }
 `;
 
+const setNextActivityQuery = gql`
+  mutation {
+    setNextActivity @client
+  }
+`;
+
 export const TrainingControls = ({ state }: TrainingControlsType) => {
   // TYPESCRIPT FORMAT NEEDED ?
   const [setState] = useMutation(setStateQuery);
+  const [setNextActivity] = useMutation(setNextActivityQuery);
 
   const IconButton = ({ icon, color, newState }) => (
     <div
@@ -32,6 +39,9 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
         }}
         onClick={() => {
           setState({ variables: { state: newState } })
+          if (newState === StateTypes.executing) {
+            setNextActivity()
+          }
         }}
       >
         <FontAwesomeIcon icon={icon} color={color} />

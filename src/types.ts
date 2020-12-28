@@ -12,7 +12,7 @@ export type Activity = {
   type: string;
   exercise: Exercise;
   time: number;
-  status?: string;
+  status: string;
 };
 
 export type ActivityInputToAddActivity = Omit<Activity, "id"> & {
@@ -126,5 +126,11 @@ export type EditTextInputProps = TextInputProps & {
 export enum StateTypes {
   edit = "edit",
   paused = "paused",
+  executing = "executing"
+}
+
+export enum ActivityStateTypes {
+  planned = "planned",
+  finished = "finished",
   executing = "executing"
 }

@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import { get } from "lodash/fp";
-import { Training } from "../../../types";
-import { addCircuit } from "../../../utils";
+import { Training, ActivityStateTypes } from "../../../types";
+import { addCircuit, resetTraining } from "../../../utils";
 
 const initialState: { training: Training & { __typename: string } } = {
   training: {
@@ -14,33 +14,35 @@ const initialState: { training: Training & { __typename: string } } = {
   }
 };
 
-const resolvers = {
-  Mutation: {
-    addCircuit: (_, variables, { cache }) => {
-      const query = gql`
-        {
-          training @client {
+const trainingQuery = gql`
+      {
+        training @client {
+          id
+          type
+          name
+          edit
+          plan {
             id
             type
             name
-            edit
             plan {
               id
               type
-              name
-              plan {
-                id
-                type
-                time
-                exercise {
-                  name
-                }
+              time
+              status
+              exercise {
+                name
               }
             }
           }
         }
-      `;
-      const { training } = cache.readQuery({ query });
+      }`;
+
+const resolvers = {
+  Mutation: {
+    addCircuit: (_, variables, { cache }) => {
+
+      const { training } = cache.readQuery({ query: trainingQuery });
       const newTraining = addCircuit(training);
       const data = {
         training: newTraining
@@ -53,6 +55,31 @@ const resolvers = {
         state: get("state", variables)
       };
       cache.writeData({ data });
+      return null;
+    },
+    setNextActivity: (_, variables, { cache }) => {
+      const { training } = cache.readQuery({ query: trainingQuery });
+      let found = false
+      for (let i = 0; i < training.plan.length; i++) {
+        const circuit = training.plan[i]
+        for (let j = 0; j < circuit.plan.length; j++) {
+          const activity = circuit.plan[j]
+          if (activity.status === ActivityStateTypes.executing) {
+            activity.status = ActivityStateTypes.finished
+          }
+          else if (activity.status === ActivityStateTypes.planned) {
+            activity.status = ActivityStateTypes.executing
+            found = true;
+            break;
+          }
+        }
+        if (found) {
+          break;
+        }
+      }
+
+      cache.writeData({ data: { training: { ...training } } });
+      return null;
     },
     resetTraining: (_, variables, { cache }) => {
       const query = gql`
@@ -66,11 +93,8 @@ const resolvers = {
         }
       `;
       const { training } = cache.readQuery({ query });
-      const newTraining = { ...training, plan: [] };
-      const data = {
-        training: newTraining
-      };
-      cache.writeData({ data });
+      const newTraining = resetTraining(training);
+      cache.writeData({ data: { training: { ...newTraining } } });
       return null;
     },
     writeTraining: (_, variables, { cache }) => {

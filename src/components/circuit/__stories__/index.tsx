@@ -15,34 +15,34 @@ const id = "coiansdoisanodinasid";
 const type = "circuit";
 
 export const NoActivity = () => (
-  <DragDropContext onDragEnd={() => {}}>
+  <DragDropContext onDragEnd={() => { }}>
     <Window>
       <Circuit
         edit={true}
         circuitIndex={0}
         plan={[]}
         {...{ id, type }}
-        removeCircuit={() => {}}
-        addActivity={() => {}}
-        duplicateActivity={() => {}}
-        removeActivity={() => {}}
-        editActivity={() => {}}
+        removeCircuit={() => { }}
+        addActivity={() => { }}
+        duplicateActivity={() => { }}
+        removeActivity={() => { }}
+        editActivity={() => { }}
       />
     </Window>
   </DragDropContext>
 );
 
 export const WithActivities = () => (
-  <DragDropContext onDragEnd={() => {}}>
+  <DragDropContext onDragEnd={() => { }}>
     <Window>
       <Circuit
         edit={false}
         circuitIndex={0}
-        removeCircuit={() => {}}
-        addActivity={() => {}}
-        duplicateActivity={() => {}}
-        removeActivity={() => {}}
-        editActivity={() => {}}
+        removeCircuit={() => { }}
+        addActivity={() => { }}
+        duplicateActivity={() => { }}
+        removeActivity={() => { }}
+        editActivity={() => { }}
         plan={[
           {
             id: "ca",
@@ -62,13 +62,15 @@ export const WithActivities = () => (
             id: "ca",
             type: "activity",
             exercise: { name: "Crunch" },
-            time: 60
+            time: 60,
+            status: "planned"
           },
           {
             id: "ca",
             type: "activity",
             exercise: { name: "Pull ups" },
-            time: 15
+            time: 15,
+            status: "planned"
           }
         ]}
         {...{ id, type }}
