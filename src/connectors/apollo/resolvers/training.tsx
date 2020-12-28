@@ -81,6 +81,19 @@ const resolvers = {
       cache.writeData({ data: { training: { ...training } } });
       return null;
     },
+    resetToPlanned: (_, variables, { cache }) => {
+      const { training } = cache.readQuery({ query: trainingQuery });
+      for (let i = 0; i < training.plan.length; i++) {
+        const circuit = training.plan[i]
+        for (let j = 0; j < circuit.plan.length; j++) {
+          const activity = circuit.plan[j]
+          activity.status = ActivityStateTypes.planned
+        }
+      }
+
+      cache.writeData({ data: { training: { ...training } } });
+      return null;
+    },
     resetTraining: (_, variables, { cache }) => {
       const query = gql`
         {

@@ -19,12 +19,17 @@ const setNextActivityQuery = gql`
     setNextActivity @client
   }
 `;
+const resetToPlannedQuery = gql`
+  mutation {
+    resetToPlanned @client
+  }
+`;
 
 export const TrainingControls = ({ state }: TrainingControlsType) => {
   // TYPESCRIPT FORMAT NEEDED ?
   const [setState] = useMutation(setStateQuery);
   const [setNextActivity] = useMutation(setNextActivityQuery);
-
+  const [resetToPlanned] = useMutation(resetToPlannedQuery);
   const IconButton = ({ icon, color, newState }) => (
     <div
       style={{
@@ -41,6 +46,9 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
           setState({ variables: { state: newState } })
           if (newState === StateTypes.executing) {
             setNextActivity()
+          }
+          else if (newState === StateTypes.edit) {
+            resetToPlanned()
           }
         }}
       >
