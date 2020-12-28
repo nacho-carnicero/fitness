@@ -54,6 +54,25 @@ const resolvers = {
       };
       cache.writeData({ data });
     },
+    resetTraining: (_, variables, { cache }) => {
+      const query = gql`
+        {
+          training @client {
+            id
+            type
+            name
+            edit
+          }
+        }
+      `;
+      const { training } = cache.readQuery({ query });
+      const newTraining = { ...training, plan: [] };
+      const data = {
+        training: newTraining
+      };
+      cache.writeData({ data });
+      return null;
+    },
     writeTraining: (_, variables, { cache }) => {
       const training = variables?.training;
       cache.writeData({ data: { training } });

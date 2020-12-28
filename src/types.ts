@@ -70,28 +70,12 @@ export type Training = {
   name?: string;
 };
 
-export type TrainingProps = {
-  training: Training | null;
-  addCircuit: () => void;
-  removeCircuit: () => void;
-  addActivity: () => void;
-  removeActivity: () => void;
-  duplicateActivity: () => void;
-  editActivity: () => void;
-  state?: string;
-};
-
 export type AddCircuit = (
   previousTraining: Training,
   newCircuit?: CircuitInputToAddCircuit
 ) => Training;
 
 export type TrainingControls = {
-  state: string;
-};
-
-export type TrainingHeader = {
-  addCircuit: () => void;
   state: string;
 };
 
@@ -116,6 +100,23 @@ export type TextProps = {
   style?: any;
 };
 
+export type TrainingHeader = {
+  addCircuit: () => void;
+  resetTraining: () => void;
+  state: string;
+};
+
+export type TrainingProps = {
+  training: Training | null;
+  addCircuit: () => void;
+  resetTraining: () => void;
+  removeCircuit: () => void;
+  addActivity: () => void;
+  removeActivity: () => void;
+  duplicateActivity: () => void;
+  editActivity: () => void;
+  state?: string;
+}
 export type TextInputProps = TextFieldProps & { bold?: boolean };
 
 export type EditTextInputProps = TextInputProps & {
