@@ -50,6 +50,7 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
           else if (newState === StateTypes.edit) {
             resetToPlanned()
           }
+          // TODO haltProgress() if paused
         }}
       >
         <FontAwesomeIcon icon={icon} color={color} />

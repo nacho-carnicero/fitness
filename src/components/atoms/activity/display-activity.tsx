@@ -32,15 +32,17 @@ export const DisplayActivity = ({
     ...style
   }));
 
-  const [completed, setCompleted] = useState(status === "finished" ? 100 : 0);
+  const maxScore = 100
+  const [completed, setCompleted] = useState(status === "finished" ? maxScore : 0);
   const [isFinished, setFinished] = useState(false)
   const [timerID, setTimerID] = useState(0);
   const [setNextActivity] = useMutation(setNextActivityQuery);
 
   useEffect(() => {
+
     function progress(timeRef) {
-      const diff = (Date.now() - timeRef) / 10 / time;
-      setCompleted(Math.min(diff, 100));
+      const diff = (Date.now() - timeRef) / (time * 1000) * maxScore;
+      setCompleted(Math.min(diff, maxScore));
     }
 
     if (status === "executing" && completed === 0) {
@@ -50,12 +52,12 @@ export const DisplayActivity = ({
 
       return () => {
         // Every time u change state, the component unmounts
-        // clearInterval(timer);  
+        // clearInterval(timer);
       };
     }
   }, [status, time, completed]);
 
-  if (completed === 100 && !isFinished) {
+  if (completed === maxScore && !isFinished) {
     clearInterval(timerID);
     setFinished(true)
     setNextActivity()
