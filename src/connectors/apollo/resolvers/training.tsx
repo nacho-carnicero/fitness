@@ -59,11 +59,16 @@ const resolvers = {
     },
     setNextActivity: (_, variables, { cache }) => {
       const { training } = cache.readQuery({ query: trainingQuery });
+
       let found = false
-      for (let i = 0; i < training.plan.length; i++) {
-        const circuit = training.plan[i]
+      const newTraining = { ...training, plan: [...get("plan", training)] }
+
+      for (let i = 0; i < newTraining.plan.length; i++) {
+        const circuit = newTraining.plan[i]
+        newTraining.plan[i] = { ...circuit, plan: [...get("plan", circuit)] }
         for (let j = 0; j < circuit.plan.length; j++) {
-          const activity = circuit.plan[j]
+          const activity = { ...newTraining.plan[i].plan[j] }
+          newTraining.plan[i].plan[j] = activity
           if (activity.status === ActivityStateTypes.executing) {
             activity.status = ActivityStateTypes.finished
           }
@@ -78,7 +83,7 @@ const resolvers = {
         }
       }
 
-      cache.writeData({ data: { training: { ...training } } });
+      cache.writeData({ data: { training: newTraining } });
       return null;
     },
     resetToPlanned: (_, variables, { cache }) => {
