@@ -25,11 +25,18 @@ const resetToPlannedQuery = gql`
   }
 `;
 
+const pauseTimeQuery = gql`
+  mutation {
+    pauseTime @client
+  }
+`;
+
 export const TrainingControls = ({ state }: TrainingControlsType) => {
   // TYPESCRIPT FORMAT NEEDED ?
   const [setState] = useMutation(setStateQuery);
   const [setNextActivity] = useMutation(setNextActivityQuery);
   const [resetToPlanned] = useMutation(resetToPlannedQuery);
+  const [pauseTime] = useMutation(pauseTimeQuery);
   const IconButton = ({ icon, color, newState }) => (
     <div
       style={{
@@ -50,7 +57,9 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
           else if (newState === StateTypes.edit) {
             resetToPlanned()
           }
-          // TODO haltProgress() if paused
+          else {
+            pauseTime()
+          }
         }}
       >
         <FontAwesomeIcon icon={icon} color={color} />

@@ -4,7 +4,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import { useMutation } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import { Text } from "../text";
-import { ActivityProps } from "../../../types";
+import { ActivityProps, ActivityStateTypes as ast } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
 const setNextActivityQuery = gql`
@@ -17,14 +17,14 @@ export const DisplayActivity = ({
   exercise,
   time,
   style,
-  status = "planned"
+  status = ast.planned
 }: ActivityProps) => {
   const ActivityContainer = styled.div(props => ({
     width: 300,
     height: 100,
     borderRadius: 5,
     boxShadow:
-      status === "executing" ? executingShadow : "0px 0px 1px #555555AA",
+      status === ast.executing ? executingShadow : "0px 0px 1px #555555AA",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -33,32 +33,32 @@ export const DisplayActivity = ({
   }));
 
   const maxScore = 100
-  const [completed, setCompleted] = useState(status === "finished" ? maxScore : 0);
+  const [completed, setCompleted] = useState(status === ast.finished ? maxScore : 0);
   const [isFinished, setFinished] = useState(false)
-  const [timerID, setTimerID] = useState(0);
+  const [timeDone, setTimeDone] = useState(0)
   const [setNextActivity] = useMutation(setNextActivityQuery);
 
   useEffect(() => {
 
     function progress(timeRef) {
-      const diff = (Date.now() - timeRef) / (time * 1000) * maxScore;
-      setCompleted(Math.min(diff, maxScore));
+      const diff = Math.min((Date.now() - timeRef + timeDone) / (time * 1000), 1);
+      setCompleted(maxScore * diff);
+      setTimeDone(time * 1000 * diff);
     }
 
-    if (status === "executing" && completed === 0) {
+    if (status === ast.executing) {
       const timeRef = Date.now();
       const timer = window.setInterval(progress, 16, timeRef);
-      setTimerID(timer);
 
       return () => {
-        // Every time u change state, the component unmounts
-        // clearInterval(timer);
+        clearInterval(timer);
+        console.log("Interval cleared!")
       };
     }
-  }, [status, time, completed]);
+    // eslint-disable-next-line
+  }, [status]);
 
   if (completed === maxScore && !isFinished) {
-    clearInterval(timerID);
     setFinished(true)
     setNextActivity()
   }
@@ -92,7 +92,7 @@ export const DisplayActivity = ({
       >
         {`${time}`}
       </Text>
-      {status !== "planned" && (
+      {completed !== 0 && (
         <LinearProgress
           variant="determinate"
           value={completed}
