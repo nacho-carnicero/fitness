@@ -51,12 +51,12 @@ const TrainingHeader = ({ addCircuit, resetTraining, state }: TrainingHeaderType
     <div style={{ margin: 5, flexDirection: "row", display: "flex" }}>
       <button
         style={buttonStyle}
-        onClick={() => { addCircuit() }}>
+        onClick={addCircuit}>
         <FontAwesomeIcon icon={faPlus} />
       </button>
       <button
         style={buttonStyle}
-        onClick={() => { resetTraining() }}>
+        onClick={resetTraining}>
         <FontAwesomeIcon icon={faTrash} />
       </button>
     </div>
