@@ -6,6 +6,7 @@ const defaultEmptyActivity = {
   type: "activity",
   exercise: { name: "New exercise", __typename: "Exercise" },
   time: 0,
+  status: "planned",
   __typename: "Activity"
 };
 

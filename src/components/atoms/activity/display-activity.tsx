@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import LinearProgress from "@material-ui/core/LinearProgress";
+import { useMutation } from "@apollo/react-hooks";
+import gql from "graphql-tag";
 import { Text } from "../text";
-import { ActivityProps } from "../../../types";
+import { ActivityProps, ActivityStateTypes as ast } from "../../../types";
 
 const executingShadow = "0px 0px 3px 1px #555555AA";
+const setNextActivityQuery = gql`
+  mutation {
+    setNextActivity @client
+  }
+`;
 
 export const DisplayActivity = ({
   exercise,
   time,
   style,
-  status = "planned"
+  status = ast.planned
 }: ActivityProps) => {
   const ActivityContainer = styled.div(props => ({
     width: 300,
     height: 100,
     borderRadius: 5,
     boxShadow:
-      status === "executing" ? executingShadow : "0px 0px 1px #555555AA",
+      status === ast.executing ? executingShadow : "0px 0px 1px #555555AA",
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -25,31 +32,35 @@ export const DisplayActivity = ({
     ...style
   }));
 
-  const [completed, setCompleted] = useState(status === "finished" ? 100 : 0);
-  const [timerID, setTimerID] = useState(0);
+  const maxScore = 100
+  const [completed, setCompleted] = useState(status === ast.finished ? maxScore : 0);
+  const [isFinished, setFinished] = useState(false)
+  const [timeDone, setTimeDone] = useState(0)
+  const [setNextActivity] = useMutation(setNextActivityQuery);
 
   useEffect(() => {
+
     function progress(timeRef) {
-      setCompleted(() => {
-        const diff = (Date.now() - timeRef) / 1 / time; // CHANGE 1 FOR 10 FOR REAL TIME
-        return Math.min(diff, 100);
-      });
+      const diff = Math.min((Date.now() - timeRef + timeDone) / (time * 1000), 1);
+      setCompleted(maxScore * diff);
+      setTimeDone(time * 1000 * diff);
     }
 
-    if (status === "executing" && completed === 0) {
+    if (status === ast.executing) {
       const timeRef = Date.now();
       const timer = window.setInterval(progress, 16, timeRef);
-      setTimerID(timer);
 
       return () => {
         clearInterval(timer);
+        console.log("Interval cleared!")
       };
     }
-  }, [status, time, completed]);
+    // eslint-disable-next-line
+  }, [status]);
 
-  if (completed === 100) {
-    // CHANGE STATUS ////////////////////////////////////////////
-    clearInterval(timerID);
+  if (completed === maxScore && !isFinished) {
+    setFinished(true)
+    setNextActivity()
   }
 
   return (
@@ -81,7 +92,7 @@ export const DisplayActivity = ({
       >
         {`${time}`}
       </Text>
-      {status !== "planned" && (
+      {completed !== 0 && (
         <LinearProgress
           variant="determinate"
           value={completed}

@@ -7,6 +7,6 @@ export const Activity = (props: ActivityProps) => {
   return props.edit === true ? (
     <EditActivity {...props} />
   ) : (
-    <DisplayActivity {...props} />
-  );
+      <DisplayActivity {...props} />
+    );
 };

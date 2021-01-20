@@ -1,13 +1,43 @@
 import React from "react";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faStop } from "@fortawesome/free-solid-svg-icons";
 
-import { TrainingControls as TrainingControlsType } from "../../../types";
+import { TrainingControls as TrainingControlsType, StateTypes } from "../../../types";
+
+
+const setStateQuery = gql`
+  mutation($state: string) {
+    setState(state: $state) @client
+  }
+`;
+
+const setNextActivityQuery = gql`
+  mutation {
+    setNextActivity @client
+  }
+`;
+const resetToPlannedQuery = gql`
+  mutation {
+    resetToPlanned @client
+  }
+`;
+
+const pauseTimeQuery = gql`
+  mutation {
+    pauseTime @client
+  }
+`;
 
 export const TrainingControls = ({ state }: TrainingControlsType) => {
   // TYPESCRIPT FORMAT NEEDED ?
-  const IconButton = ({ icon, color }) => (
+  const [setState] = useMutation(setStateQuery);
+  const [setNextActivity] = useMutation(setNextActivityQuery);
+  const [resetToPlanned] = useMutation(resetToPlannedQuery);
+  const [pauseTime] = useMutation(pauseTimeQuery);
+  const IconButton = ({ icon, color, newState }) => (
     <div
       style={{
         padding: 5
@@ -20,7 +50,16 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
           borderRadius: 5
         }}
         onClick={() => {
-          console.log("click");
+          setState({ variables: { state: newState } })
+          if (newState === StateTypes.executing) {
+            setNextActivity()
+          }
+          else if (newState === StateTypes.edit) {
+            resetToPlanned()
+          }
+          else {
+            pauseTime()
+          }
         }}
       >
         <FontAwesomeIcon icon={icon} color={color} />
@@ -37,12 +76,12 @@ export const TrainingControls = ({ state }: TrainingControlsType) => {
         flexDirection: "row"
       }}
     >
-      {(state === "edit" || state === "paused") && (
-        <IconButton icon={faPlay} color="green" />
+      {(state === StateTypes.edit || state === StateTypes.paused) && (
+        <IconButton icon={faPlay} color="green" newState={StateTypes.executing} />
       )}
-      {state === "executing" && <IconButton icon={faPause} color="gray" />}
-      {(state === "executing" || state === "paused") && (
-        <IconButton icon={faStop} color="red" />
+      {state === StateTypes.executing && <IconButton icon={faPause} color="gray" newState={StateTypes.paused} />}
+      {(state === StateTypes.executing || state === StateTypes.paused) && (
+        <IconButton icon={faStop} color="red" newState={StateTypes.edit} />
       )}
     </div>
   );

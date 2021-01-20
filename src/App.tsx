@@ -28,6 +28,7 @@ const trainingQuery = gql`
           id
           type
           time
+          status
           exercise {
             name
           }
@@ -40,6 +41,12 @@ const trainingQuery = gql`
 const addCircuitQuery = gql`
   mutation {
     addCircuit @client
+  }
+`;
+
+const resetTrainingQuery = gql`
+  mutation {
+    resetTraining @client
   }
 `;
 
@@ -91,6 +98,7 @@ function App() {
   const trainingQueryResponse = useQuery(trainingQuery);
   const training = get("data.training", trainingQueryResponse);
   const [addCircuit] = useMutation(addCircuitQuery);
+  const [resetTraining] = useMutation(resetTrainingQuery);
   const [removeCircuit] = useMutation(removeCircuitQuery);
   const [addActivity] = useMutation(addActivityQuery);
   const [removeActivity] = useMutation(removeActivityQuery);
@@ -112,6 +120,7 @@ function App() {
         <Training
           training={training}
           addCircuit={addCircuit}
+          resetTraining={resetTraining}
           removeCircuit={removeCircuit}
           addActivity={addActivity}
           removeActivity={removeActivity}

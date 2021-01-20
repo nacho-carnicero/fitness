@@ -56,6 +56,7 @@ const resolvers = {
                 id
                 type
                 time
+                status
                 exercise {
                   name
                 }
@@ -88,6 +89,7 @@ const resolvers = {
                 id
                 type
                 time
+                status
                 exercise {
                   name
                 }
