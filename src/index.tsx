@@ -4,11 +4,14 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import App from "./App";
 import { client } from "./connectors/apollo";
 import * as serviceWorker from "./serviceWorker";
+import { ChakraProvider } from "@chakra-ui/react"
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <ChakraProvider>
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </ChakraProvider>,
   document.getElementById("root")
 );
 
