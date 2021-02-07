@@ -11,6 +11,7 @@ import {
 } from "../../style/layout";
 import { ActivityProps, CircuitProps } from "../../types";
 
+// @ts-ignore
 const mapUncapped = map.convert({ cap: false });
 
 const Separator = styled.div(`

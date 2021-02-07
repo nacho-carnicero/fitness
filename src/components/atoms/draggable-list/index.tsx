@@ -2,8 +2,9 @@ import React from "react";
 import { map, flatten } from "lodash/fp";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 
+// @ts-ignore
 const mapUncapped = map.convert({ cap: false });
-type Item = React.FC;
+type Item = any | React.FC;
 
 const ItemsList = React.memo(function ItemsList({
   items,

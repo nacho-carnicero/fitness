@@ -22,6 +22,7 @@ import {
   StateTypes,
 } from "../../types";
 
+// @ts-ignore
 const mapUncapped = map.convert({ cap: false });
 
 const buttonStyle = {
